@@ -14,10 +14,16 @@
   "dependencies": {
     "axios": "^0.16.2",
     "cross-env": "^5.0.1",
+    "css-loader": "^0.28.11",
+    "element-ui": "^2.4.1",
     "express": "^4.15.3",
+    "node-sass": "^4.9.0",
     "nuxt": "^1.0.0-rc9",
     "nuxt-class-component": "^1.0.1",
     "nuxt-property-decorator": "^1.0.0",
+    "postcss-hexrgba": "^1.0.1",
+    "postcss-nested": "^3.0.0",
+    "postcss-responsive-type": "^1.0.0",
     "source-map-support": "^0.4.15",
     "tachyons": "^4.7.4",
     "vue-class-component": "^5.0.2"
