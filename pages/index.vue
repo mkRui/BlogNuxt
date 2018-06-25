@@ -11,12 +11,12 @@
           <h4><span>{{ item.comments }}</span> 条评论 · <span>{{ item.read }}</span> 人阅读 · <span>{{ item.praise }}</span> 人点赞</h4>
           <div class="clearfix" v-if='!item.image'>
             <div class="contentText">{{ item.content }}</div>
-            <div class="mores"><router-link :to="{path:'/details',query:{id: item.id}}">Read More</router-link></div>
+            <div class="mores"><nuxt-link :to="{path:'/details',query:{id: item.id}}">Read More</nuxt-link></div>
           </div>
           <div class="clearfix" v-else>
             <div class="image"></div>
             <div class="content">{{ item.content }}</div>
-            <div class="more"><router-link :to="{path:'/details',query:{id: item.id}}">Read More</router-link></div>
+            <div class="more"><nuxt-link :to="{path:'/details',query:{id: item.id}}">Read More</nuxt-link></div>
           </div>
         </li>
       </ul>
@@ -45,18 +45,46 @@
   </div>
 </template>
 
-<script>
+<script lang='ts'>
 import search from '~/components/index/search.vue'
 import hot from '~/components/index/hot.vue'
 import labels from '~/components/index/label.vue'
 import linkList from '~/components/index/linkList.vue'
-export default {
-  name: 'blogs',
-  data () {
-    return {
-      show: true,
-      all: false,
-      article: [
+
+import { Component, Vue } from 'nuxt-property-decorator'
+
+import { State, namespace } from "vuex-class"
+
+const AuthGetter = namespace('detail', State)
+
+interface articlePage {
+  title: string,
+  read: string,
+  comments: string,
+  praise: string,
+  content: string,
+  date: string,
+  id: string,
+  image: boolean,
+  url?: string
+}
+
+@Component({
+  components: {
+    search,
+    hot,
+    labels,
+    linkList
+  }
+})
+export default class home extends Vue {
+  private show: boolean = true
+
+  private all: boolean = false
+
+  @AuthGetter people
+
+  private article: articlePage[] = [
         {title: 'web前端学习之路', read: '0', comments: '0', praise: '3', content: '撒开的飞机上看绝代风华就开始的方式点击客服快速的减肥还是收到回复即可收到就发黄金时代和反馈就是地方斯巴达克见风使舵简咖啡机可视电话房贷首付看就是倒海翻江可视电话房间就看到舒服', date: '2017年11月21日', id: '1478943266', image: true, url: 'dasdasdasdasda'},
         {title: '安卓8今日更新', read: '4', comments: '4', praise: '0', content: '撒开的飞机上看绝代风华就开始的方式点击发货风欢快的健身房就开始电话客服快速的减肥还是收到发黄金时代和反馈就是地方斯巴达克见风使舵简咖啡机可视电话房贷首付看就是倒海翻江可视电话房间就看到舒服', date: '2017年11月22日', id: '14783466', image: false},
         {title: 'pathon 机器学习', read: '0', comments: '0', praise: '0', content: '撒开的飞机上看绝代风华就开始的方式点击发货风欢快的健身房就开始电话客服快速的减肥还是收到回复即可收到就发黄金时代和反馈就是地方斯巴达克见风使舵简咖啡机可视电话房贷首付看就是倒海翻江可视电话房间就看到舒服', date: '2017年11月23日', id: '14789266', image: true, url: 'dasdasdasdasda'},
@@ -65,31 +93,12 @@ export default {
         {title: '电脑玩家 与 人工智能', read: '0', comments: '0', praise: '2', content: '撒开的飞机上看绝代风华就开始的方式点击发货风欢快的健身房就开始电话客服快速的减肥还是收到回复即可f发挥空间收到回复开始的开发第三方收到就发黄金时代和反馈就是地方斯巴达克见风使舵简咖啡机可视电话房贷首付看就是倒海翻江可视电话房间就看到舒服', date: '2017年11月11日', id: '1478943268', image: true, url: 'dasdasdasdasda'},
         {title: '电脑玩家 与 人工智能', read: '0', comments: '0', praise: '2', content: '撒开的飞机上看绝代风华就开始的方式点击发货风欢快的健身房就开始电话客服快速的减肥还是收到回复即可f发挥空间收到回复开始的开发第三方收到就发黄金时代和反馈就是地方斯巴达克见风使舵简咖啡机可视电话房贷首付看就是倒海翻江可视电话房间就看到舒服', date: '2017年11月11日', id: '1478943268', image: true, url: 'dasdasdasdasda'}
       ]
-    }
-  },
-  components: {
-    search,
-    hot,
-    labels,
-    linkList
-  },
-  mounted () {
+  
+  private mounted (): void {
     this.all = true
-  },
-  created () {
-    // console.log(window)
-    // setTimeout(() => {
-    //   window.addEventListener('scroll', () => {
-    //     if (window.innerHeight + window.scrollY > document.body.offsetHeight - 100) {
-    //       this.show = false
-    //     } else {
-    //       this.show = true
-    //     }
-    //   })
-    // }, 100)
+    console.log((this as any).people)
   }
-}
-
+ }
 </script>
 
 <style scoped lang='scss'>

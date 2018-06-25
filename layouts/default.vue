@@ -116,6 +116,9 @@ export default class Home extends Vue {
       }
     }, 20)
   }
+
+  private mounted ():void {
+  }
 }
 </script>
 
