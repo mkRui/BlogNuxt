@@ -16,11 +16,11 @@
         <div class="content">
           <img src="@/assets/image/articleimages.jpg" alt="">
         </div>
-        <!-- <comment></comment> -->
+        <comment></comment>
     </div>
     <div class="side">
 
-      <!-- <transition name="slide-up" mode="out-in">
+      <transition name="slide-up" mode="out-in">
         <search v-show="all"></search>
       </transition>
 
@@ -34,29 +34,29 @@
 
       <transition name="slide-up" mode="out-in">
         <link-list v-show="all"></link-list>
-      </transition> -->
+      </transition>
 
     </div>
   </div>
 </template>
 <script lang='ts'>
-// import comment from '~components/details/comments.vue'
-// import search from '~components/details/search.vue'
-// import hot from '~components/details/hot.vue'
-// import labels from '~components/details/label.vue'
-// import mainContent from '~components/details/content.vue'
-// import linkList from '~components/details/linkList.vue'
+import comment from '~/components/details/comments.vue'
+import search from '~/components/details/search.vue'
+import hot from '~/components/details/hot.vue'
+import labels from '~/components/details/label.vue'
+import mainContent from '~/components/details/content.vue'
+import linkList from '~/components/details/linkList.vue'
 import {Component, Vue} from 'nuxt-property-decorator'
 
 @Component({
-  // components: {
-    // search,
-    // hot,
-    // labels,
-    // comment,
-    // mainContent,
-    // linkList
-  // }
+  components: {
+    search,
+    hot,
+    labels,
+    comment,
+    mainContent,
+    linkList
+  }
 }) 
 export default class detail extends Vue {
   private all: boolean = false
@@ -64,6 +64,12 @@ export default class detail extends Vue {
   private like: boolean = false
 
   private ifDetail: boolean = false
+
+  private mounted () {
+    setTimeout(() => {
+      this.all = true
+    })
+  }
 }
 </script>
 <style lang='scss'>

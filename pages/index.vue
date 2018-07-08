@@ -95,7 +95,9 @@ export default class home extends Vue {
       ]
   
   private mounted (): void {
-    this.all = true
+    setTimeout(() => {
+      this.all = true
+    })
     console.log((this as any).people)
   }
  }
