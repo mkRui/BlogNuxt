@@ -18,6 +18,9 @@
     "css-loader": "^0.28.11",
     "element-ui": "^2.4.1",
     "express": "^4.15.3",
+    "github-markdown-css": "^2.10.0",
+    "highlight.js": "^9.12.0",
+    "marked": "^0.4.0",
     "node-sass": "^4.9.0",
     "nuxt": "^1.0.0-rc9",
     "nuxt-class-component": "^1.0.1",
@@ -28,6 +31,7 @@
     "source-map-support": "^0.4.15",
     "tachyons": "^4.7.4",
     "vue-class-component": "^5.0.2",
+    "vue-simplemde": "^0.4.8",
     "vuex-class": "^0.3.1"
   },
   "devDependencies": {
