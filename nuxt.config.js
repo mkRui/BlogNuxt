@@ -19,6 +19,7 @@ module.exports = {
   loading: { color: '#3B8070' },
   css: [
     'tachyons/css/tachyons.min.css',
+    'highlight.js/styles/mono-blue.css',
     { src: '~assets/scss/index.scss', lang: 'scss' },
     { src: '~assets/scss/element-variables.scss', lang: 'scss' }
   ],
@@ -26,6 +27,11 @@ module.exports = {
   ** Add axios globally
   */
   build: {
+    vendor: [
+      'axios',
+      'marked',
+      'highlight.js'
+    ],
     postcss: [
       require('postcss-nested')(),
       require('postcss-responsive-type')(),
@@ -39,13 +45,16 @@ module.exports = {
       plugins: [
         'transform-runtime',
         'transform-decorators-legacy',
-        'transform-class-properties'        
+        'transform-class-properties',
       ]
     },
-    vendor: ['axios', 'nuxt-class-component']
+    vendor: ['axios', 'nuxt-class-component', 'vuex-class']
   },
   plugins: [
-    '@/plugins/element-ui'
+    '@/plugins/element-ui',
+    { src: '~plugins/marked.js' },
+    { src: '~/plugins/highlight.js' },
+    { src: '~plugins/filter.js' },
   ],
   modules: ['~modules/typescript.ts']
 }
