@@ -78,7 +78,7 @@
 </div>
 </template>
 <script>
-import CommentBox from './CommentBox'
+import CommentBox from './CommentBox.vue'
 import mainContent from './content'
 import dialogBox from './dialogBox'
 export default {
@@ -86,7 +86,8 @@ export default {
   data () {
     return {
       dialogs: false,
-      id: 4
+      id: 4,
+      words: []
     }
   },
   methods: {
@@ -138,14 +139,15 @@ export default {
     dialogBox
   },
   computed: {
-    words () {
-      return this.$store.state.article.words
-    }
+    // words () {
+    //   return this.$store.state.article.words
+    // }
   }
 }
 </script>
 <style lang='scss' scoped>
-@import url('./../../../iconfont/iconfont.css');
+@import url('./../../iconfont/iconfont.css');
+@import '~assets/scss/variable.scss';
   .comments {
     margin-top: 30px;
     .header {

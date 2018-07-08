@@ -36,6 +36,7 @@ export default {
 }
 </script>
 <style scoped lang='scss'>
+@import '~assets/scss/variable.scss';
   .retrieve {
     margin-bottom: 20px;
 

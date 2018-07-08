@@ -37,8 +37,8 @@ export default {
         display: block;
         max-height: 19em;
         padding: 1em;
-        overflow-y: auto;
-        overflow-x: hidden;
+        overflow-x: auto;
+        overflow-y: hidden;
       }
     }
     img {

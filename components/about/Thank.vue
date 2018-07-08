@@ -11,7 +11,7 @@
       </li>
     </ul>
     <div class="address">
-      <router-link to="/index">回到主页</router-link>
+      <router-link to="/">回到主页</router-link>
       <span>···</span>
       <router-link to="/message">留言墙</router-link>
       <div>···</div>
@@ -39,6 +39,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import '~assets/scss/variable.scss';
 .tanks {
   float: right;
   width: 345px;
@@ -66,8 +67,10 @@ export default {
   .address {
     margin-top: 20px;
     margin-left: 5px;
+    display: flex;
     a {
-      font-size: 13px;
+      margin-left: 10px;
+      margin-right: 10px;
     }
   }
 }

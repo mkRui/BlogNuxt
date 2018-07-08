@@ -1,10 +1,10 @@
 <template>
   <div class="linkList" v-fixed>
-      <div class='thislink'><router-link to="/aboutme">关于作者</router-link></div>
+      <div class='thislink'><nuxt-link to="/about">关于作者</nuxt-link></div>
       <div>···</div>
-      <div class='thislink'><router-link to="/message">留言墙</router-link></div>
+      <div class='thislink'><nuxt-link to="/message">留言墙</nuxt-link></div>
       <div>···</div>
-      <div class='thislink'><router-link to="/archive">归档</router-link></div>
+      <div class='thislink'><nuxt-link to="/archive">归档</nuxt-link></div>
   </div>
 </template>
 <script>

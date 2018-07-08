@@ -81,6 +81,7 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
+@import '~assets/scss/variable.scss';
   .leave {
     > .leaveMain {
       ul {

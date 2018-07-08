@@ -20,6 +20,7 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
+@import '~assets/scss/variable.scss';
   .development {
     width: 345px;
     height: 165px;

@@ -39,7 +39,8 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
-  @import url('./../../../iconfont/iconfont.css');
+  @import url('./../../iconfont/iconfont.css');
+  @import '~assets/scss/variable.scss';
   .Introduction {
       width: 578px;
       float: left;

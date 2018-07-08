@@ -40,6 +40,7 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
+@import '~assets/scss/variable.scss';
     .labels {
       transform: .35s;
       margin-top: 40px;
