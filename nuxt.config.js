@@ -1,60 +1,76 @@
+const pkg = require('./package')
+
 module.exports = {
+  mode: 'universal',
+
   /*
   ** Headers of the page
   */
   head: {
-    title: 'starter',
+    title: pkg.name,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js project' }
+      { hid: 'description', name: 'description', content: pkg.description }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+
+  /*
+  ** Customize the progress-bar color
+  */
+  loading: { color: '#fff' },
+
   /*
   ** Global CSS
   */
-  loading: { color: '#3B8070' },
   css: [
-    'tachyons/css/tachyons.min.css',
-    'highlight.js/styles/mono-blue.css',
-    { src: '~assets/scss/index.scss', lang: 'scss' },
-    { src: '~assets/scss/element-variables.scss', lang: 'scss' }
+    'element-ui/lib/theme-chalk/index.css'
+  ],
+
+  /*
+  ** Plugins to load before mounting the App
+  */
+  plugins: [
+    '@/plugins/element-ui'
+  ],
+
+  /*
+  ** Nuxt.js modules
+  */
+  modules: [
+    // Doc: https://github.com/nuxt-community/axios-module#usage
+    '@nuxtjs/axios'
   ],
   /*
-  ** Add axios globally
+  ** Axios module configuration
+  */
+  axios: {
+    // See https://github.com/nuxt-community/axios-module#options
+  },
+
+  /*
+  ** Build configuration
   */
   build: {
-    vendor: [
-      'axios',
-      'marked',
-      'highlight.js'
-    ],
-    postcss: [
-      require('postcss-nested')(),
-      require('postcss-responsive-type')(),
-      require('postcss-hexrgba')(),
-    ],
-    babel: {
-      presets: [
-        'es2015', 
-        'stage-0'
-      ],
-      plugins: [
-        'transform-runtime',
-        'transform-decorators-legacy',
-        'transform-class-properties',
-      ]
-    },
-    vendor: ['axios', 'nuxt-class-component', 'vuex-class']
-  },
-  plugins: [
-    '@/plugins/element-ui',
-    { src: '~plugins/marked.js' },
-    { src: '~/plugins/highlight.js' },
-    { src: '~plugins/filter.js' },
-  ],
-  modules: ['~modules/typescript.ts']
+    /*
+    ** You can extend webpack config here
+    */
+    extend(config, ctx) {
+      // Run ESLint on save
+      if (ctx.isDev && ctx.isClient) {
+        config.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|vue)$/,
+          loader: 'eslint-loader',
+          exclude: /(node_modules)/,
+          options : {
+            fix : true
+          }
+        })
+      }
+    }
+  }
 }
