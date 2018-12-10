@@ -58,9 +58,9 @@ export default {
     messageBox () {
       this.dialog = true
     },
-    masBox () {
-      this.dialog = false
-    },
+    // masBox () {
+    //   this.dialog = false
+    // },
     msgLeave (data) {
       var json = {}
       json.name = this.call
