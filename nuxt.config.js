@@ -2,7 +2,9 @@ const pkg = require('./package')
 
 module.exports = {
   mode: 'universal',
-
+  router: {
+    middleware: 'auth'
+  },
   /*
   ** Headers of the page
   */
@@ -27,7 +29,8 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    'element-ui/lib/theme-chalk/index.css'
+    'element-ui/lib/theme-chalk/index.css',
+    '@/assets/scss/index.scss'
   ],
 
   /*
@@ -58,6 +61,15 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
+   styleResources: {
+     scss: ['./assets/scss/variable.scss']
+   },
+   // 在页面单文件中使用 scss 
+    postcss: [
+      require('postcss-nested')(),
+      require('postcss-responsive-type')(),
+      require('postcss-hexrgba')(),
+    ],
     extend(config, ctx) {
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
