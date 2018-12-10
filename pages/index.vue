@@ -5,10 +5,9 @@
 </template>
 <script>
 export default {
-  layout: 'container',
   name: 'index',
   mounted () {
-    
+    this.$router.push('/articleList')
   }
 }
 </script>

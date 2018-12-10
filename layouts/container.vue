@@ -4,7 +4,11 @@
     <div class="header">
       <pc-head></pc-head>
     </div>
-    <nuxt></nuxt>
+    
+    <!-- 内容主体 -->
+    <div class="nuxt-Control">
+      <nuxt></nuxt>
+    </div>
   </div>
 </template>
 <script>

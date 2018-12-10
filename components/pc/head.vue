@@ -1,6 +1,6 @@
 <template>
 <div class="headList">
-  <div class="head">
+  <div class="head" v-fixed:top>
     <div class="header">
       <h2>he<span>llo</span>  world </h2>
       <p>hi Welcome to the blog</p>
@@ -13,7 +13,7 @@
       </div>
     </div>
   </div>
-  <div class="position"></div>
+  <div class="position" v-fixed:height></div>
 </div>
 </template>
 <script>
@@ -42,7 +42,10 @@ export default {
 .headList {
   .position {
     width: 100%;
-    height: 1100px;
+    height: 110px;
+  }
+  .reduction {
+    height: 30px;
   }
   .head {
     width: 100%;
@@ -51,6 +54,7 @@ export default {
     top: 0;
     z-index: 99;
     background-color: rgb(235,235,235);
+    transition: .35s;
     .header {
       width: 1024px;
       height: 80px;
@@ -101,6 +105,12 @@ export default {
         }
       }
     }
+  }
+  .show {
+    top: -80px;
+    // transform: translateY(0);
+    // -webkit-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    // transition:  all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 }
 
