@@ -5,11 +5,20 @@
       <h2>he<span>llo</span>  world </h2>
       <p>hi Welcome to the blog</p>
     </div>
+
     <div class="nav">
-      <div>
-        <ul class="clearfix">
-          <li v-for="(item, index) in nav" :key="index" @click="Link"> {{ item.tagTitle }}</li>
+      <div class="auto-control">
+        <!-- 导航 -->
+        <ul>
+          <li v-for="(item, index) in nav" :key="index" :class="item.tagTitle === $route.query.classify ? 'active' : ''" @click="Link(item.tagTitle)"> {{ item.tagTitle }}</li>
         </ul>
+
+        <!-- 搜索按钮 -->
+        <div class="button-search">
+          <input type="text" ref="searchInput" v-focus>
+          <i class="el-icon-search"></i>
+        </div>
+      
       </div>
     </div>
   </div>
@@ -20,12 +29,17 @@
 export default {
   data () {
     return {
-      nav: ['技术', '读书', '娱乐', '电子']
+      nav: []
     }
   },
   methods: {
-    Link () {
-      console.log(this.$store)
+    Link (item) {
+      this.$router.push({
+        path: '/articleList',
+        query: {
+          classify: item
+        }
+      })
     }
   },
   async mounted () {
@@ -34,6 +48,7 @@ export default {
       pageSize: 9999,
       tagState: 0
     })
+    this.$refs.searchInput.focus()
     this.nav = this.$store.state.common.classify
   }
 }
@@ -42,10 +57,10 @@ export default {
 .headList {
   .position {
     width: 100%;
-    height: 110px;
+    height: 120px;
   }
   .reduction {
-    height: 30px;
+    height: 40px;
   }
   .head {
     width: 100%;
@@ -83,24 +98,53 @@ export default {
     }
     .nav {
       width: 100%;
+      height: 40px;
       background-color: $head;
 
-      div {
+      .auto-control {
         width: 1024px;
         margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
 
         ul {
+          display: flex;
           li {
             width: 100px;
+            height: 40px;
             color: #fff;
-            float: left;
             text-align: center;
-            line-height: 30px;
+            line-height: 40px;
             font-weight: bolder;
             font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
           }
           li:hover {
             background-color: $border;
+          }
+          li.active {
+            background-color: $border;
+          }
+        }
+        .button-search {
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          i {
+            color: #fff;
+            font-size: 19px;
+          }
+          input {
+            width: 0px;
+            border: 0;
+            background: transparent;
+            border-bottom: 1px solid #e3e3e3;
+            color: #e3e3e3;
+            transition: .35s;
+          }
+          &:hover {
+            input {
+              width: 167px;
+            }
           }
         }
       }

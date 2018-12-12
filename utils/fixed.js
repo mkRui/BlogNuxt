@@ -12,3 +12,19 @@ export const fixed = {
   }
 }
 
+// 自动获取焦点
+export const focus = {
+  inserted(el, option) {
+    var defClass = 'el-input'
+    var defTag = 'input'
+    var value = option.value || true
+    if (typeof value === 'boolean') {
+      value = { cls: defClass, tag: defTag, foc: value }
+    } else {
+      value = { cls: value.cls || defClass, tag: value.tag || defTag, foc: value.foc || false }
+    }
+    if (el.classList.contains(value.cls) && value.foc) {
+      el.getElementsByTagName(value.tag)[0].focus()
+    }
+  }
+}
