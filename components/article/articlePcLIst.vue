@@ -9,7 +9,7 @@
         <h3>{{ item.articleTitle }}</h3>
         <h4><span>{{ item.articleComments }}</span> 条评论 · <span>{{ item.readArticleNumber }}</span> 人阅读 · <span>{{ item.praise }}</span> 人点赞</h4>
         <div v-if='!item.cover'>
-          <div class="content">{{ item.articleContent }}</div>
+          <div class="content">{{ item.articleMin }}</div>
           <div class="more"><nuxt-link :to="{path:'/details',query:{id: item.id}}">Read More</nuxt-link></div>
         </div>
         <div class="imgState" v-else>
@@ -17,7 +17,7 @@
             <img :src="item.cover">
           </div>
           <div>
-            <div class="content">{{ item.articleContent }}</div>
+            <div class="content">{{ item.articleMin }}</div>
             <div class="more"><nuxt-link :to="{path:'/details',query:{id: item.id}}">Read More</nuxt-link></div>
           </div>
         </div>
@@ -27,10 +27,9 @@
 </template>
 <script>
 export default {
-  name: 'articleList',
+  name: 'articlePcList',
   data () {
     return {
-      article: [],
       pageNo: 1
     }
   },
@@ -43,31 +42,30 @@ export default {
      * @param tag 标签
      * 
      */
-    async switchPage (page, keyword, classify, tag) {
+    async switchPage (page, query) {
       await this.$store.dispatch('article/getArticleList', {
         state:1,
         submit:1,
-        tag: tag,
-        classify: classify,
-        keyWord: keyword,
+        // tag: tag,
+        // classify: classify,
+        // keyWord: keyword,
+        ...query,
         pageNo: page,
         pageSize: 10
       })
-      this.article = this.$store.state.article.articleList
+    }
+  },
+  computed: {
+    article () {
+      return  this.$store.state.article.articleList
     }
   },
   watch: {
     '$route':{
       handler: function (to, form) {
-        this.article = []
-        if (!to.query.classify) {
-          this.switchPage(1)
-        } else {
-          this.switchPage(1, '', to.query.classify)
-        }
-      },
-      immediate: true
-    } 
+        this.switchPage(1, to.query)
+      }
+    }
   }
 }
 </script>
@@ -127,7 +125,8 @@ export default {
         .imgState {
           display: flex;
           .image {
-            width: 200px;
+            min-width: 200px;
+            max-width: 200px;
             height:200px;
             background: #f0f0f0;
             margin-right: 20px;

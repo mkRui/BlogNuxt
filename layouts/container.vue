@@ -11,6 +11,9 @@
         <nuxt></nuxt>
       </transition>
     </div>
+
+    <!-- 回到顶部 -->
+    <div class="scrollB el-icon-arrow-up" v-scroll @click="scroll"></div>
   </div>
 </template>
 <script>
@@ -24,6 +27,19 @@ export default {
   data () {
     return {
       mobile: false
+    }
+  },
+  methods: {
+    scroll () {
+      var timer = null
+      this.distance = window.scrollY
+      timer = setInterval(() => {
+        this.distance -= 20
+        window.scrollTo(0, this.distance)
+        if (this.distance < 0) {
+          clearInterval(timer)
+        }
+      }, 20)
     }
   },
   mounted () {
@@ -41,6 +57,26 @@ export default {
   width: 100%;
   .nuxt-Control {
     margin: 0 auto;
+  }
+  .scrollB {
+    position: fixed;
+    bottom: 70px;
+    right: 35px;
+    width: 45px;
+    height: 45px;
+    text-align: center;
+    line-height: 45px;
+    font-size: 20px;
+    color: #fff;
+    border-radius: 50%;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
+    background-color: #1C6E8C;
+    transform: translateX(300px);
+  }
+  .show {
+    transform: translateX(0);
+    -webkit-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition:  all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 }
 </style>

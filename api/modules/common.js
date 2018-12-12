@@ -6,3 +6,10 @@ export function getAllTag (params) {
   .then((res) => res.data)
   .catch((e) => console.error(e))
 }
+
+// 获取热门标签
+export function getHotTag (params) {
+  return axios.get('/panel/getHotTag', { params })
+  .then((res) => res.data)
+  .catch((e) => console.error(e))
+}

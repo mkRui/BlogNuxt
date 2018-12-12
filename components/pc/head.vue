@@ -15,21 +15,22 @@
 
         <!-- 搜索按钮 -->
         <div class="button-search">
-          <input type="text" ref="searchInput" v-focus>
+          <input type="text" v-model="keyword" :style="{width: keyword ? '167px' : '0px'}" @keydown.enter="search" ref="searchInput" v-focus>
           <i class="el-icon-search"></i>
         </div>
       
       </div>
     </div>
   </div>
-  <div class="position" v-fixed:height></div>
+  <div class="position"></div>
 </div>
 </template>
 <script>
 export default {
   data () {
     return {
-      nav: []
+      nav: [],
+      keyword: ''
     }
   },
   methods: {
@@ -40,9 +41,21 @@ export default {
           classify: item
         }
       })
+    },
+    search (item) {
+      this.$router.push({
+        path: '/articleList',
+        query: {
+          keyWord: this.keyword
+        }
+      })
     }
   },
   async mounted () {
+    console.log(this.$route.query.keyWord)
+    if (this.$route.query.keyWord) {
+      this.keyword = this.$route.query.keyWord
+    }
     await this.$store.dispatch('common/getClassify', {
       pageNo: 1,
       pageSize: 9999,
@@ -143,7 +156,7 @@ export default {
           }
           &:hover {
             input {
-              width: 167px;
+              width: 167px !important;
             }
           }
         }
