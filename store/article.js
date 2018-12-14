@@ -25,6 +25,15 @@ export const actions = {
     } else {
       return res
     }
+  },
+  // 获取文章详情
+  async getArticleDetail ({ commit }, param) {
+    const res = await article.articleDetail(param)
+    if (res && res.code === 1) {
+      commit('GET_ARTICLE_DETAIL', res.result)
+    } else {
+      return res
+    }
   }
 }
 
@@ -36,5 +45,8 @@ export const mutations = {
   },
   GET_HOT_ARTICLE (state, item) {
     state.hotArticle = item.list
+  },
+  GET_ARTICLE_DETAIL (state, item) {
+    state.detail = item
   }
 }

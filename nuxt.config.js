@@ -29,16 +29,19 @@ module.exports = {
   ** Global CSS
   */
   css: [
+    'highlight.js/styles/monokai-sublime.css',
     'element-ui/lib/theme-chalk/index.css',
-    '@/assets/scss/index.scss'
+    { src: '~assets/scss/index.scss', lang: 'sass' }
   ],
 
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/element-ui',
-    '@/plugins/directive'
+    { src: '~/plugins/element-ui' },
+    { src: '~/plugins/directive' },
+    { src: '~/plugins/marked.js' },
+    { src: '~/plugins/highlight.js' },
   ],
 
   /*

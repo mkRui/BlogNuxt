@@ -10,7 +10,7 @@
         <h4><span>{{ item.articleComments }}</span> 条评论 · <span>{{ item.readArticleNumber }}</span> 人阅读 · <span>{{ item.praise }}</span> 人点赞</h4>
         <div v-if='!item.cover'>
           <div class="content">{{ item.articleMin }}</div>
-          <div class="more"><nuxt-link :to="{path:'/details',query:{id: item.id}}">Read More</nuxt-link></div>
+          <div class="more"><nuxt-link :to="`/article/${item.id}`">Read More</nuxt-link></div>
         </div>
         <div class="imgState" v-else>
           <div class="image">
@@ -18,11 +18,19 @@
           </div>
           <div>
             <div class="content">{{ item.articleMin }}</div>
-            <div class="more"><nuxt-link :to="{path:'/details',query:{id: item.id}}">Read More</nuxt-link></div>
+            <div class="more"><nuxt-link :to="`/article/${item.id}`">Read More</nuxt-link></div>
           </div>
         </div>
       </li>
     </transition-group>
+    <div class="more-btn" >
+      <span @click="more" v-if="article.length !== count">
+        MORE
+      </span>
+      <span>
+        没有更多了。。。
+      </span>
+    </div>
   </div>
 </template>
 <script>
@@ -53,11 +61,17 @@ export default {
         pageNo: page,
         pageSize: 10
       })
+    },
+    more () {
+      this.switchPage(this.$store.state.article.pageNo + 1, this.$route.query)
     }
   },
   computed: {
     article () {
       return  this.$store.state.article.articleList
+    },
+    count () {
+      return this.$store.state.article.total
     }
   },
   watch: {
@@ -162,6 +176,13 @@ export default {
             background-color: $border;
           }
         }
+      }
+    }
+    .more-btn {
+      margin-bottom: 20px;
+      span {
+        border-top: 3px solid #666;
+        padding-top: 8px;
       }
     }
   }

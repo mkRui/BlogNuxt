@@ -1,7 +1,7 @@
 <template>
   <div class="hot-article">
     <transition-group tag="ul" name="list" mode="out-in">
-      <li v-for="item in article" :key="item.id">
+      <li v-for="item in article" :key="item.id" @click="viewDetail(item.id)" >
         <div class="banner" v-if='item.cover'>
           <img :src="item.cover">
         </div>
@@ -19,6 +19,11 @@ export default {
   computed: {
     article () {
       return  this.$store.state.article.hotArticle
+    }
+  },
+  methods: {
+    viewDetail (item) {
+      this.$router.push(`/article/${item}`)
     }
   },
   mounted () {
