@@ -16,13 +16,50 @@
             </p>
             
             <!-- 封面图片 -->
-            <div class="content-cover">
+            <div v-if="article.cover" class="content-cover">
               <img :src="article.cover" alt="">
             </div>
 
             <!-- 解析后的内容 -->
             <view-marked :marked="content" ></view-marked>
+
+            <!-- 结束 -->
+            <!-- <div class="footer">
+              <span>
+                END
+              </span>
+            </div> -->
+
+            <!-- 信息 -->
+            <div class="info">
+              <div>
+                <i class="iconfont icon-like" @click="like" :class="isLike ? 'isLike' : ''">{{ article.praise }}</i>
+              </div>
+              <div>
+                <i class="iconfont icon-tag"></i>
+                <span
+                  v-for="(item, index) in article.tag.split(',')"
+                  @click="$router.push({path: '/articleList', query: { tag: item }})"
+                  :key="index">
+                  {{ item }}
+                </span>
+              </div>
+              <div>
+                版权信息：
+                <a href="https://creativecommons.org/licenses/by-nc/3.0/cn/deed.zh" target="_blank">非商用-署名-自由转载</a>
+              </div>
+            </div>
+
+            <!-- 分割线 -->
+            <hr class='hr'>
+
+            <div class="link">
+              <span class="iconfont icon-weibo"></span>
+              <span class="iconfont icon-qq"></span>
+              <span class="iconfont icon-wechat"></span>
+            </div>
         </div>
+        <comments></comments>
       </div>
       <div class="right">
         <div class="control-right">
@@ -55,13 +92,17 @@ import hotTag from '@/components/article/hotTag.vue'
 import viewMarked from '@/components/common/viewMarked.vue'
 
 import linkList from '@/components/common/link.vue'
+
+import comments from '@/components/comments/commentsCon.vue'
+
 export default {
   layout: 'container',
   // 文章详情
   name: 'detail',
   data () {
     return {
-      content: ''
+      content: '',
+      isLike: false
     }
   },
   components: {
@@ -69,7 +110,8 @@ export default {
     hotArticle,
     hotTag,
     linkList,
-    viewMarked
+    viewMarked,
+    comments
   },
   // 指定定容器
   layout: 'container',
@@ -93,9 +135,23 @@ export default {
       // return marked(this.$store.state.article.detail.content)
       // return this.$store.state.article.detail.content
   },
+  methods: {
+    like () {
+      let like = window.localStorage.getItem('articleLike').split(',')
+      if (!like.includes(this.$route.params.id)) {
+        like.push(this.$route.params.id)
+        this.isLike = true
+      }
+      window.localStorage.setItem('articleLike', like.join(','))
+    }
+  },
   mounted () {
+    let like = window.localStorage.getItem('articleLike').split(',')
     // this.$store.dispatch('article/getArticleDetail', query)
     this.content = marked(this.article.content)
+    if (like.includes(this.$route.params.id)) {
+      this.isLike = true
+    }
   }
 }
 </script>
@@ -111,7 +167,7 @@ export default {
       background-color: #fff;
       border-radius: 8px;
       padding: 20px;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
       position: relative;
       > .triangle {
         width: 140px;
@@ -155,6 +211,49 @@ export default {
       .content-cover {
         img {
           width: 100%;
+        }
+      }
+      .footer {
+        margin-top: 10px;
+        span {
+          border-top: 2px solid #666;
+          color: #666;
+          padding: 2px 0px;
+          padding-right: 10px;
+          font-style: oblique;
+        }
+      }
+      .info {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        color: #666;
+        div {
+          span {
+            cursor: pointer;
+          }
+        }
+        i {
+          font-size: 16px;
+          &::before {
+            margin-right: 3px;
+          }
+          &.isLike {
+            color: #F56C6C;
+          }
+        }
+      }
+      .link {
+        display: flex;
+        justify-content: flex-start;
+        span {
+          display: block;
+          font-size: 20px;
+          padding: 1px 15px;
+          background: #f4f5f5;
+          // color: #fff;
+          border-radius: 5px;
+          margin-right: 10px;
         }
       }
     }
