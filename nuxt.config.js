@@ -42,6 +42,7 @@ module.exports = {
     { src: '~/plugins/directive' },
     { src: '~/plugins/marked.js' },
     { src: '~/plugins/highlight.js' },
+    { src: '~/plugins/filter.js' }
   ],
 
   /*

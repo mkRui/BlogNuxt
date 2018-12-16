@@ -6,18 +6,24 @@
       <div></div>
     </div>
 
-    <!-- 评论用户信息 输入 -->
-    <user-info ref="userInfo"></user-info>
+    <div class="collection">
+      <!-- 评论框集合 -->
+      <comments-collection></comments-collection>
+
+      <!-- 评论列表 -->
+      <comments-list></comments-list>
+    </div>
+
   </div>
 </template>
 <script>
-import userInfo from './userInfo.vue'
+import commentsCollection from './comments'
+import commentsList from './commentsList'
 export default {
   name: 'comments',
   components: {
-    userInfo
-  },
-  mounted () {
+    commentsCollection,
+    commentsList
   }
 }
 </script>
@@ -27,6 +33,7 @@ export default {
   background: #fff;
   padding: 20px;
   border-radius: 8px;
+  margin-bottom: 40px;
   .comments-head {
     display: flex;
     justify-content: flex-start;

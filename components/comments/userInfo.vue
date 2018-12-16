@@ -65,10 +65,10 @@ export default {
 .info {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   div {
     width: 33.3%;
-    padding: 5px;
+    padding: 5px 5px 5px 0px;
     input {
       width: 100%;
       border: 1px solid #dbdfe6;

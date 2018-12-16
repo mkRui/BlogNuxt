@@ -15,7 +15,7 @@
 
         <!-- 搜索按钮 -->
         <div class="button-search">
-          <input type="text" v-model="keyword" :style="{width: keyword ? '167px' : '0px'}" @keydown.enter="search" ref="searchInput" v-focus>
+          <input type="text" v-model="keyword" :style="{width: keyword ? '167px' : '0px'}" v-focus @keydown.enter="search" ref="searchInput">
           <i class="el-icon-search"></i>
         </div>
       
