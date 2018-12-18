@@ -21,7 +21,9 @@
             </div>
 
             <!-- 解析后的内容 -->
-            <view-marked :marked="content" ></view-marked>
+            <div class="view_deails">
+              <view-marked :marked="content" ></view-marked>
+            </div>
 
             <!-- 结束 -->
             <!-- <div class="footer">
@@ -212,6 +214,9 @@ export default {
         img {
           width: 100%;
         }
+      }
+      .view_deails {
+        margin-top: 20px;
       }
       .footer {
         margin-top: 10px;

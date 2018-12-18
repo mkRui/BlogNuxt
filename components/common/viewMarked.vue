@@ -37,7 +37,6 @@ export default {
 </script>
 <style lang="scss">
 .viewMarked {
-  margin-top: 20px;
   @for $i from 1 to 6 {
     h#{$i} {
       border-bottom: 1px solid #eaecef;

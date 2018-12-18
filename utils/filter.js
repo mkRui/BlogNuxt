@@ -7,7 +7,7 @@ import emojiData from './emoji-data'
 export function emoji (content) {
   let emojiContent = content
   emojiData.forEach(item => {
-    emojiContent.replace(item.name, item.icon)
+    emojiContent = emojiContent.replace(item.name, item.icon)
   })
   return emojiContent
 }

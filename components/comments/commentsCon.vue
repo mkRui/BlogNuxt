@@ -2,7 +2,7 @@
   <div class="commtent-con">
     <!-- 头部统计 -->
     <div class="comments-head">
-      <i class="iconfont icon-comments">20</i>
+      <i class="iconfont icon-comments"> {{ total }} </i>
       <div></div>
     </div>
 
@@ -24,6 +24,19 @@ export default {
   components: {
     commentsCollection,
     commentsList
+  },
+  computed: {
+    total () {
+      return this.$store.state.comments.total
+    }
+  },
+  mounted () {
+    this.$store.dispatch('comments/getCommentsList', {
+      articleId: this.$route.params.id,
+      parentId: 0,
+      pageNo: 1,
+      pageSize: 5
+    })
   }
 }
 </script>
