@@ -34,6 +34,10 @@ export const actions = {
     } else {
       return res
     }
+  },
+  // 增加文章评论
+  async addArticleNum ({ commit }, param) {
+    commit('ADD_ARTICLE_NUM')
   }
 }
 
@@ -48,5 +52,8 @@ export const mutations = {
   },
   GET_ARTICLE_DETAIL (state, item) {
     state.detail = item
+  },
+  ADD_ARTICLE_NUM (state, item) {
+    state.detail.comments += 1
   }
 }

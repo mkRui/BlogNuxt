@@ -8,7 +8,7 @@
 
     <div class="collection">
       <!-- 评论框集合 -->
-      <comments-collection></comments-collection>
+      <comments-collection @save='submit' ref="commentsCollection"></comments-collection>
 
       <!-- 评论列表 -->
       <comments-list></comments-list>
@@ -30,13 +30,29 @@ export default {
       return this.$store.state.comments.total
     }
   },
+  methods: {
+    async submit (item) {
+      const res = await this.$store.dispatch('comments/addComment', {
+        ...item,
+        articleId: this.$route.params.id,
+        article: this.$store.state.article.detail.title,
+        author: this.$store.state.article.detail.createUser,
+        adminflag: true
+      })
+      this.$refs.commentsCollection.cancel()
+      this.commentsList()
+    },
+    async commentsList () {
+      await this.$store.dispatch('comments/getCommentsList', {
+        articleId: this.$route.params.id,
+        parentId: 0,
+        pageNo: 1,
+        pageSize: 5
+      })
+    }
+  },
   mounted () {
-    this.$store.dispatch('comments/getCommentsList', {
-      articleId: this.$route.params.id,
-      parentId: 0,
-      pageNo: 1,
-      pageSize: 5
-    })
+    this.commentsList()
   }
 }
 </script>

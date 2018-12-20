@@ -13,7 +13,7 @@
       </transition>
     </div>
     <div>
-      <input placeholder="请输入您的网址" v-model="info.web" type="text">
+      <input placeholder="请输入您的网址" v-model="info.url" type="text">
     </div>
   </div>
 </template>
@@ -25,7 +25,7 @@ export default {
       info: {
         user: '',
         email: '',
-        web: ''
+        url: ''
       },
       validState: {
         user: false,
@@ -36,16 +36,20 @@ export default {
   methods: {
     validate (dataFun) {
       for (let i in this.info) {
-        if (i !== 'web' && !this.info[i]) {
-          this.validState[i] = true
-        } else {
-          this.validState[i] = false
-          if (i !== 'email' && /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/.test(this.info[i])) {
+        if (i !== 'url') {
+          if (!this.info[i]) {
             this.validState[i] = true
+          } else {
+            this.validState[i] = false
+            if (i === 'email' && /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/.test(this.info[i])) {
+              this.validState[i] = false
+            } else if (i === 'email') {
+              this.validState[i] = true
+            }
           }
         }
       }
-      return dataFun(!Object.values(this.validState).includes(false))
+      return dataFun(!Object.values(this.validState).includes(true))
     },
     validInput (item) {
       if (item === 'email' && !/^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/.test(this.info[item])) {
@@ -56,6 +60,16 @@ export default {
         } else {
           this.validState[item] = false
         }
+      }
+    }
+  },
+  mounted () {
+    if (JSON.parse(localStorage.getItem('user'))) {
+      const data = JSON.parse(localStorage.getItem('user'))
+      this.info = {
+        user: data.user,
+        email: data.email,
+        url: data.url
       }
     }
   }

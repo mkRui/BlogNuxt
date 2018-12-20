@@ -29,12 +29,26 @@ export const actions = {
     } else {
       return res
     }
+  },
+  // 评论点赞
+  async commentsPraise ({ commit }, param) {
+    const res = await comments.commentsPraise(param)
+    return res
+  },
+  // 赞数增加
+  async praise ({ commit }, param) {
+    commit('PRAISE', param)
+  },
+  // 评论
+  async addComment ({ commit }, param) {
+    console.log(1)
+    const res = await comments.addComment(param)
+    return res
   }
 }
 
 export const mutations = {
   GET_COMMENTS_LIST (state, item) {
-    console.log(marked('```console.log(1)```'))
     state.commentsList = item.list.map(item => {
       return {
         ...item,
@@ -57,16 +71,31 @@ export const mutations = {
     state.total = item.totalCount
   },
   GET_COMMENTS_CHILD (state, item) {
-    const id = item.list[0].parentId
-    for (const elem of state.articleList) {
+    const id = Number(item.list[0].commentsParentid)
+    for (const elem of state.commentsList) {
       if (elem.id === id) {
-        elem.child.push(item.list.map(item => {
+        elem.child = item.list.map(item => {
           return {
             ...item,
             commentsContent: marked(item.commentsContent)
           }
-        }))
+        })
+        elem.commentsNum = item.totalCount
       }
     }
-  }
+  },
+  PRAISE (state, item) {
+    for (const commentsItem of state.commentsList) {
+      if (commentsItem.id === item) {
+        commentsItem.commentsPraise += 1
+        return
+      }
+      for (const commentsChild of commentsItem.child) {
+        if (commentsChild.id === item) {
+          commentsChild.commentsPraise += 1
+          return
+        }
+      }
+    }
+  } 
 }

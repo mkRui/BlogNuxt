@@ -139,7 +139,7 @@ export default {
   },
   methods: {
     like () {
-      let like = window.localStorage.getItem('articleLike').split(',')
+      let like = (window.localStorage.getItem('articleLike') || '').split(',')
       if (!like.includes(this.$route.params.id)) {
         like.push(this.$route.params.id)
         this.isLike = true
@@ -148,7 +148,7 @@ export default {
     }
   },
   mounted () {
-    let like = window.localStorage.getItem('articleLike').split(',')
+    let like = (window.localStorage.getItem('articleLike') || '').split(',')
     // this.$store.dispatch('article/getArticleDetail', query)
     this.content = marked(this.article.content)
     if (like.includes(this.$route.params.id)) {

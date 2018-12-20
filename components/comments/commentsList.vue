@@ -1,7 +1,7 @@
 <template>
   <div class="comments-list">
     <transition-group tag="ul" mode="out-in" name="list">
-      <li v-for="(item, index) in commentsList" :key="item.id" class="comments-main">
+      <li v-for="item in commentsList" :key="item.id" class="comments-main">
           <div class="user-face">
             <!-- userface -->
             <img :src="item.face ? item.face : userFace" alt="">
@@ -19,27 +19,31 @@
             <!-- 点赞 回复 展开 -->
             <div class="fun-button">
               <i class="iconfont icon-like" @click="like(item.id)" :class="commentsId.includes(item.id.toString()) ? 'isLike' : ''">{{ item.commentsPraise }}</i>
-              <i class="iconfont icon-comments">{{ Number(item.commentsNum) }}</i>
-              <i class="iconfont icon-reply iconReply" @click="reply(index)">回复</i>
-              <i class="el-icon-close" v-if="locationIndex === index" @click="locationIndex = ''">取消</i>
+              <i class="iconfont icon-comments" @click="more(item)">{{ Number(item.commentsNum) }}</i>
+              <i class="iconfont icon-reply iconReply" @click="reply(item)">回复</i>
+              <i class="el-icon-close" v-if="locationIndex === item.id" @click="locationIndex = ''">取消</i>
             </div>
 
             <!-- 回复主评论的 回复框 -->
-            <comments v-if="locationIndex === index" ></comments>
+            <comments v-if="locationIndex === item.id" @save='submit' ref="commentSubmit" ></comments>
 
             <!-- 已经评论过的 -->
-            <transition-group tag="ol" mode="out-in" name="list">
-              <li v-for="elem in commentsList" :key="elem.id" class="comments-child">
-                <p>{{ item.commentsUser }} @ {{ item.commentsUserMin ? item.commentsUserMin : '匿名' }}:</p>
+            <transition-group tag="ol" mode="out-in" name="list" v-if="item.child.length">
+              <li v-for="elem in item.child"  :key="elem.id" class="comments-child">
+                <p>{{ elem.commentsUser }} @ {{ elem.replyUser ? elem.replyUser : '匿名' }}:</p>
                 <!-- 评论内容支持 markedown 语法 -->
                 <view-marked :marked="item.commentsContent | emoji"></view-marked>
                 
                 <!-- 子集评论列表 -->
                 <div class="fun-button">
-                  <i class="iconfont icon-like" @click="like(item.id)" :class="commentsId.includes(item.id.toString()) ? 'isLike' : ''">{{ item.commentsPraise }}</i>
-                  <i class="iconfont icon-reply iconReply" @click="reply(index)">回复</i>
-                  <i class="el-icon-close" v-if="locationIndex === index" @click="locationIndex = ''">取消</i>
+                  <i class="iconfont icon-like" @click="like(elem.id)" :class="commentsId.includes(elem.id.toString()) ? 'isLike' : ''">{{ elem.commentsPraise }}</i>
+                  <i class="iconfont icon-reply iconReply" @click="replyChild(elem, item)">回复</i>
+                  <i class="el-icon-close" v-if="childLocationIndex === elem.id" @click="childLocationIndex = ''">取消</i>
                 </div>
+
+                 <!-- 回复主评论的 回复框 -->
+                  <comments v-if="childLocationIndex === elem.id" @save='submit' ref="commentSubmit" ></comments>
+
               </li>
             </transition-group>
           </div>
@@ -60,7 +64,9 @@ export default {
     return {
       userFace: userFace,
       commentsId: [],
-      locationIndex: ''
+      locationIndex: '',
+      childLocationIndex: '',
+      replyData: {}
     }
   },
   components: {
@@ -70,22 +76,75 @@ export default {
   computed: {
     commentsList () {
       return this.$store.state.comments.commentsList
+    },
+    pageNo () {
+      return this.$store.state.comments.pageNo
     }
   },
   methods: {
     // 评论点赞
-    like (item) {
+    async like (item) {
       let like = (window.localStorage.getItem('commentsLike') || '').split(',')
       if (!like.includes(item.toString())) {
-        like.push(item)
-        this.commentsId.push(item)
+        const res = await this.$store.dispatch('comments/commentsPraise', {
+          id: item
+        })
+        if (res && res.code === 1) {
+          like.push(item)
+          this.$store.dispatch('comments/praise', item)
+          this.$set(this.commentsId, this.commentsId.length, item.toString())
+        }
       }
-      console.log(this.commentsId)
       window.localStorage.setItem('commentsLike', like.join(','))
+    },
+    // 提交回复的评论
+    async submit (item) {
+      const res = await this.$store.dispatch('comments/addComment', {
+        ...item,
+        ...this.replyData,
+        articleId: this.$route.params.id,
+        article: this.$store.state.article.detail.title,
+        author: this.$store.state.article.detail.createUser
+      })
+      this.$nextTick(() => {
+        this.$refs.commentSubmit.forEach(item => {
+          item.cancel()
+        })
+      })
+      this.commentsChild(this.replyData.parentId)
+    },
+    more (item) {
+      if (!item.commentsNum) return
+      this.commentsChild(item.id)
+    },
+    // 评论
+    async commentsChild (parentId) {
+      await this.$store.dispatch('comments/getCommentsChild', {
+        articleId: this.$route.params.id,
+        parentId: parentId,
+        pageNo: 1,
+        pageSize: 15
+      })
     },
     // 回复评论
     reply (item) {
-      this.locationIndex = item
+      this.childLocationIndex = ''
+      this.locationIndex = item.id
+      this.replyData = {
+        parentId: item.id,
+        replyUser: item.commentsUser,
+        replyid: item.replyUserId
+      }
+    },
+    // 回复子集评论
+    replyChild (item, data) {
+      this.locationIndex = ''
+      this.childLocationIndex = item.id
+      this.replyData = {
+        parentId: data.id,
+        replyUser: item.commentsUser,
+        replyid: data.replyUserId
+      }
     }
   },
   mounted () {
@@ -115,6 +174,7 @@ export default {
             margin-right: 10px;
             color: #666;
             font-size: 14px;
+            cursor: pointer;
             &::before {
               margin-right: 3px;
               font-size: 16px;
@@ -161,6 +221,7 @@ export default {
           display: flex;
           justify-content: flex-start;
           align-items: center;
+          cursor: pointer;
           i {
             margin-right: 10px;
             color: #666;

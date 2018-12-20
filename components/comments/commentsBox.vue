@@ -34,7 +34,7 @@
 
         <!-- submit -->
         <el-button size="mini" @click="insert">
-          <i class="iconfont icon-submit"> 发送</i>
+          <i class="iconfont icon-submit" @click="saveSubmit">发送</i>
         </el-button>
       </div>
     </div>
@@ -88,6 +88,17 @@ export default {
         this.$refs.comments.innerText += start + end
         this.$refs.comments.scrollTo(0, this.$refs.comments.offsetHeight)
       }
+    },
+    saveSubmit () {
+      if (this.$refs.comments.innerText) {
+        this.$emit('save', this.$refs.comments.innerText)
+        this.$refs.comments.style.border = '1px solid #e3e3e3'
+      } else {
+        this.$refs.comments.style.border = '1px solid red'
+      }
+    },
+    cancel () {
+      this.$refs.comments.innerText = ''
     }
   }
 }

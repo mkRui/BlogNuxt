@@ -18,7 +18,7 @@
       </div>
       <div>
         <!-- 输入框 -->
-        <comments-box></comments-box>
+        <comments-box @save='submit' ref="commentsBox"></comments-box>
       </div>
     </div>
   </div>
@@ -55,9 +55,31 @@ export default {
       if (item.code === 1) {
         this.timg = item.result.filePath
       }
+    },
+    submit (elem) {
+      this.$refs.userInfo.validate((item) => {
+        if (item) {
+          this.$emit('save', {
+            content: elem,
+            face: this.timg,
+            ...this.$refs.userInfo.info
+          })
+          localStorage.setItem('user', JSON.stringify({
+            face: this.timg,
+            ...this.$refs.userInfo.info
+          }))
+        }
+      })
+    },
+    cancel () {
+      this.$refs.commentsBox.cancel()
     }
   },
   mounted () {
+    if (JSON.parse(localStorage.getItem('user'))) {
+      const data = JSON.parse(localStorage.getItem('user'))
+      this.timg = data.face
+    }
   },
   computed: {
     actionUrl () {
