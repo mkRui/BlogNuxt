@@ -1,5 +1,5 @@
 <template>
-  <div class="hot-article">
+  <div :class="mode">
     <transition-group tag="ul" name="list" mode="out-in">
       <li v-for="item in article" :key="item.id" @click="viewDetail(item.id)" >
         <div class="banner" v-if='item.cover'>
@@ -16,6 +16,12 @@
 <script>
 export default {
   name: 'hotArticle',
+  props: {
+    mode: {
+      type: String,
+      default: 'hot-article'
+    }
+  },
   computed: {
     article () {
       return  this.$store.state.article.hotArticle
@@ -66,6 +72,43 @@ export default {
           display: -webkit-box;
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 2;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+}
+.list {
+  margin-left: 20px;
+  border-left: 1px solid $border;
+  padding-left: 10px;
+  height: 300px;
+  ul {
+    width: 100%;
+    li {
+      background: #fff;
+      border-radius: 5px;
+      margin: 15px 0px;
+      cursor: pointer;
+      box-sizing: border-box;
+      padding: 10px;
+      display: flex;
+      .banner {
+        display: none;
+      }
+      .font {
+        display: flex;
+        h5 {
+          min-width: 150px;;
+          font-weight: normal;
+          font-size: 15px;
+          margin-bottom: 5px;
+        }
+        p {
+          line-height: 1.6;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 1;
           overflow: hidden;
         }
       }

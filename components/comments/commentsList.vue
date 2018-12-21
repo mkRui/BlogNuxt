@@ -32,7 +32,7 @@
               <li v-for="elem in item.child"  :key="elem.id" class="comments-child">
                 <p>{{ elem.commentsUser }} @ {{ elem.replyUser ? elem.replyUser : '匿名' }}:</p>
                 <!-- 评论内容支持 markedown 语法 -->
-                <view-marked :marked="item.commentsContent | emoji"></view-marked>
+                <view-marked :marked="elem.commentsContent | emoji"></view-marked>
                 
                 <!-- 子集评论列表 -->
                 <div class="fun-button">
@@ -99,6 +99,13 @@ export default {
     },
     // 提交回复的评论
     async submit (item) {
+      console.log({
+        ...item,
+        ...this.replyData,
+        articleId: this.$route.params.id,
+        article: this.$store.state.article.detail.title,
+        author: this.$store.state.article.detail.createUser
+      })
       const res = await this.$store.dispatch('comments/addComment', {
         ...item,
         ...this.replyData,

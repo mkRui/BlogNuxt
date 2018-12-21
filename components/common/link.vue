@@ -1,15 +1,15 @@
 <template>
   <div class="link-list" v-fixedTag>
-    <div class='thislink'><nuxt-link to="/about">关于作者</nuxt-link></div>
+    <div class='thislink'><nuxt-link to="/author">关于作者</nuxt-link></div>
     <div>···</div>
-    <div class='thislink'><nuxt-link to="/messages">留言墙</nuxt-link></div>
+    <div class='thislink'><nuxt-link to="/leave">留言墙</nuxt-link></div>
     <div>···</div>
     <div class='thislink'><nuxt-link to="/archive">归档</nuxt-link></div>
   </div>
 </template>
 <script>
 export default {
-  name: 'linkList'
+  name: 'linkList',
 }
 </script>
 <style lang='scss' scoped>
