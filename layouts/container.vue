@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" :class="bodyState ? 'bodyState' : ''">
     <!-- 头部信息 -->
     <div class="header">
       <pc-head></pc-head>
@@ -29,6 +29,11 @@ export default {
       mobile: false
     }
   },
+  computed: {
+    bodyState () {
+      return this.$store.state.bodyState
+    }
+  },
   methods: {
     scroll () {
       var timer = null
@@ -55,6 +60,10 @@ export default {
 <style lang='scss'>
 .container {
   width: 100%;
+  &.bodyState {
+    height: 100vh;
+    overflow: hidden;
+  }
   .nuxt-Control {
     margin: 0 auto;
   }

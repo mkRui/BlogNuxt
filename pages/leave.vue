@@ -1,18 +1,51 @@
 <template>
   <div class="leave">
+    <!-- 标题 -->
     <header>
-      <button>留言墙</button>
+      <button @click="dialog = true">留言墙</button>
     </header>
+
+    <!-- 留言墙控制 -->
+    <div class="wellControl">
+      <well></well>
+    </div>
+
+    <!-- 留言评论 -->
+    <well-dialog :visible.sync='dialog'>
+      <well-form @submit="save" slot="main"></well-form>
+    </well-dialog>
   </div>
 </template>
 <script>
+import well from '@/components/leave/well.vue'
+
+import wellDialog from '@/components/leave/wellDialog.vue'
+
+import wellForm from '@/components/leave/wellForm.vue'
+
 export default {
   name: 'leave',
   // 指定定容器
   layout: 'container',
+  data () {
+    return {
+      dialog: false
+    }
+  },
+  fetch ({ store, params }) {
+    return store.dispatch('leave/getLeaveMessage', {
+      pageNo: 1,
+      pageSize: 20
+    })
+  },
+  components: {
+    well,
+    wellDialog,
+    wellForm
+  }
 }
 </script>
-<style lang='scss'>
+<style lang='scss' scoped>
 .leave {
   width: 100%;
   header {

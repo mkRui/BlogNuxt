@@ -53,7 +53,6 @@ const listParse = (body, ordered) => {
   body.split('\n').forEach((item, index) => {
     listArr.push(item.replace('<li>', `<li>${index + 1}.`))
   })
-  console.log(ordered)
   return `<ol>${listArr.join('\n')}</ol>`
 }
 
@@ -66,7 +65,7 @@ export default (content, tags, parseHtml = false) => {
     return ''
   }
 
-  console.log(content)
+  // console.log(content)
 
   // 生成目录树
   // var toc = []

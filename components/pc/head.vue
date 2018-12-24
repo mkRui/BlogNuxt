@@ -52,7 +52,6 @@ export default {
     }
   },
   async mounted () {
-    console.log(this.$route.query.keyWord)
     if (this.$route.query.keyWord) {
       this.keyword = this.$route.query.keyWord
     }

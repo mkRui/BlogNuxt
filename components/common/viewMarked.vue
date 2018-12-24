@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div @click="view" v-html="marked" class="viewMarked" v-if="!dialogView"></div>
+    <div @click="view" v-html="marked" class="viewMarked"></div>
     <dialog-view :visible.sync="dialogView" :imgSrc='imgSrc' ></dialog-view>
   </div>
 </template>
@@ -31,6 +31,14 @@ export default {
         this.imgSrc = e.target.getAttribute('data-src')
         console.log(e.target.getAttribute('data-src'))
       }
+    }
+  },
+  watch: {
+    dialogView: {
+      handler: function () {
+        this.$store.dispatch('bodyState', this.dialogView)
+      },
+      immediate: true
     }
   }
 }
@@ -76,6 +84,8 @@ export default {
     display: block;
     padding: 20px;
     background: #f6f8fa;
+    overflow-y: hidden;
+    overflow-x: auto;
   }
 
   ol {
@@ -96,6 +106,7 @@ export default {
       color: #c7254e;
       padding: 0px 5px;
       margin: 0px 5px;
+      
     }
   }
 

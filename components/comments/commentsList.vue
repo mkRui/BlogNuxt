@@ -99,13 +99,6 @@ export default {
     },
     // 提交回复的评论
     async submit (item) {
-      console.log({
-        ...item,
-        ...this.replyData,
-        articleId: this.$route.params.id,
-        article: this.$store.state.article.detail.title,
-        author: this.$store.state.article.detail.createUser
-      })
       const res = await this.$store.dispatch('comments/addComment', {
         ...item,
         ...this.replyData,

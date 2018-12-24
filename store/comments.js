@@ -41,7 +41,6 @@ export const actions = {
   },
   // 评论
   async addComment ({ commit }, param) {
-    console.log(1)
     const res = await comments.addComment(param)
     return res
   }
