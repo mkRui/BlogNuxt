@@ -12,8 +12,9 @@
 
     <!-- 留言评论 -->
     <well-dialog :visible.sync='dialog'>
-      <well-form @submit="save" slot="main"></well-form>
+      <well-form @submit="save" slot="main" ref="wellForm"></well-form>
     </well-dialog>
+
   </div>
 </template>
 <script>
@@ -42,6 +43,23 @@ export default {
     well,
     wellDialog,
     wellForm
+  },
+  methods: {
+    async save (item) {
+      const res = await this.$store.dispatch('leave/addLeaveMessage', item)
+      if (!res) {
+        this.$refs.wellForm.cancel()
+        this.dialog = false
+      }
+    }
+  },
+  mounted () {
+    window.addEventListener('scroll', () => {
+      let innerH = document.body.scrollHeight - document.documentElement.clientHeight
+      if (window.scrollY + 30 >= innerH) {
+        this.$store.dispatch('leave/moveLeave')
+      }
+    })
   }
 }
 </script>

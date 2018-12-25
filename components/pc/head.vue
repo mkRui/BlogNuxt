@@ -1,7 +1,7 @@
 <template>
 <div class="headList">
   <div class="head" v-fixed:top>
-    <div class="header">
+    <div class="header" @click="goIndex">
       <h2>he<span>llo</span>  world </h2>
       <p>hi Welcome to the blog</p>
     </div>
@@ -49,6 +49,9 @@ export default {
           keyWord: this.keyword
         }
       })
+    },
+    goIndex () {
+      this.$router.push('/articleList')
     }
   },
   async mounted () {

@@ -48,12 +48,12 @@ export default {
   background: rgba(102, 102, 102, 0.6);
   .control {
     width: 630px;
-    height: 291px;
+    height: 361px;
     position: fixed;
     top: 50%;
     left: 50%;
     margin-left: -315px;
-    margin-top: -145px;
+    margin-top: -180px;
     background: #fff;
     z-index: 2001;
     > header {

@@ -1,5 +1,5 @@
 <template>
-  <div class="articleList">
+  <div :class="mobile ? 'articleMobileList' : 'articleList'">
     <transition-group tag="ul" name="list" mode="out-in">
       <li v-for="item in article" :key="item.id">
         <div class="triangle">
@@ -72,6 +72,9 @@ export default {
     },
     count () {
       return this.$store.state.article.total
+    },
+    mobile () {
+      return this.$store.state.isMobile
     }
   },
   watch: {
@@ -84,6 +87,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+// pc 端
   .articleList {
     ul {
       margin-top: 40px;
@@ -183,6 +187,70 @@ export default {
       span {
         border-top: 3px solid #666;
         padding-top: 8px;
+      }
+    }
+  }
+// 移动端
+ .articleMobileList {
+   padding: 10px 10px;
+   margin-top: 1.5rem;
+   li {
+     position: relative;
+     background: #fff;
+     margin-bottom: 20px;
+     padding: 1.2rem;
+     border-radius: 5px;
+      > .triangle {
+        width: 140px;
+        height: 24px;
+        position: absolute;
+        top: -10px;
+        left: 20px;
+        div:nth-child(2) {
+          float: left;
+          width: 130px;
+          height: 24px;
+          color: #fff;
+          line-height: 24px;
+          text-align: center;
+          font-weight: bolder;
+          font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+          background-color: $border;
+        }
+        div:nth-child(1) {
+          float: left;
+          width: 0px;
+          height: 0px;
+          border-top: solid 10px transparent;
+          border-right: solid 10px $border;
+          color: #ffffff;
+        }
+      }
+      > h4 {
+        padding: 5px 0px;
+        font-weight: normal;
+      }
+      > .imgState {
+          .image {
+            width: 100%;
+            img {
+              width: 100%;
+            }
+          }
+          .content {
+            margin-top: 10px;
+          }
+      }
+      .more {
+        display: block;
+        margin-top: 10px;
+        a {
+          display: block;
+          background: $border;
+          color: #fff;
+          padding: 5px;
+          text-align: center;
+        }
       }
     }
   }

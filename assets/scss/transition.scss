@@ -45,3 +45,9 @@
 .fade-aside-enter { transform: translateX(10px); } 
 .fade-aside-leave-active { transform: translateX(-10px); }
 
+// 全部左移
+.left-enter-active { transition: all .5s ease;}
+.left-leave-active { transition: all .5s cubic-bezier(.55,0,.1,1);}
+.left-enter,{ transform: translateX(-100%);}
+.left-leave-active { transform: translateX(-100%);}
+.left-move { transition: all .5s;}

@@ -18,3 +18,10 @@ export function getHotArticle (params) {
   .then((res) => res.data)
   .catch((e) => console.error(e))
 }
+
+// 文章归档
+export function articleArchive (params) {
+  return axios.get('/article/articleArchive')
+  .then((res) => res.data)
+  .catch((e) => console.error(e))
+}

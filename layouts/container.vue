@@ -2,7 +2,8 @@
   <div class="container" :class="bodyState ? 'bodyState' : ''">
     <!-- 头部信息 -->
     <div class="header">
-      <pc-head></pc-head>
+      <mobile-head v-if="mobile"></mobile-head>
+      <pc-head v-else></pc-head>
     </div>
     
     <!-- 内容主体 -->
@@ -19,19 +20,24 @@
 <script>
 import pcHead from '@/components/pc/head.vue'
 
+import mobileHead from '@/components/mobile/head.vue'
+
 export default {
   name: 'container',
   components: {
-    pcHead
+    pcHead,
+    mobileHead
   },
   data () {
     return {
-      mobile: false
     }
   },
   computed: {
     bodyState () {
       return this.$store.state.bodyState
+    },
+    mobile () {
+      return this.$store.state.isMobile
     }
   },
   methods: {
@@ -45,13 +51,6 @@ export default {
           clearInterval(timer)
         }
       }, 20)
-    }
-  },
-  mounted () {
-    if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-      this.mobile = true
-    } else {
-      this.mobile = false
     }
   }
 }

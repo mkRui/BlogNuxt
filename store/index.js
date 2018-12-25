@@ -5,7 +5,7 @@ export const state = () => ({
 
 export const actions = {
   nuxtServerInit ({commit}, {req}) {
-    const state = /Android|webOS|iPhone|iPod|BlackBerry/i.test(req.headers['user-agent'])
+    const state = /Android|ipad|webOS|iPhone|iPod|BlackBerry/i.test(req.headers['user-agent'])
     commit('NUXT_SERVICE_INIT', state)
   },
   bodyState ({commit}, param) {

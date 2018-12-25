@@ -4,7 +4,8 @@ export const state = () => ({
   articleList: [],
   hotArticle: [],
   pageNo: 1,
-  total: 1
+  total: 1,
+  archiveList: []
 })
 
 export const actions = {
@@ -38,6 +39,13 @@ export const actions = {
   // 增加文章评论
   async addArticleNum ({ commit }, param) {
     commit('ADD_ARTICLE_NUM')
+  },
+  // 归档
+  async articleArchive ({ commit }, param) {
+    const res = await article.articleArchive(param)
+    if (res && res.code === 1) {
+      commit('ARTICLE_ARCHIVE', res.result)
+    }
   }
 }
 
@@ -55,5 +63,8 @@ export const mutations = {
   },
   ADD_ARTICLE_NUM (state, item) {
     state.detail.comments += 1
+  },
+  ARTICLE_ARCHIVE (state, item) {
+    state.archiveList = item
   }
 }

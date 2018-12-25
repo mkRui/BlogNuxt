@@ -3,7 +3,13 @@
     <li>
       <h4>客官？(名字)</h4>
       <div>
-        <input v-model="state" type="text" placeholder="客官请输入～">
+        <input v-model="well.name" type="text" placeholder="客官请输入～">
+      </div>
+    </li>
+    <li>
+      <h4>要标题吗？</h4>
+      <div>
+        <input v-model="well.title" type="text" placeholder="客官请输入～">
       </div>
     </li>
     <li>
@@ -22,10 +28,27 @@ export default {
   components: {
     comments
   },
+  data () {
+    return {
+      well: {
+        name: '',
+        title: ''
+      }
+    }
+  },
   methods: {
     submit (item) {
-      this.$store
-      console.log(item)
+      this.$emit('submit', {
+        ...this.well,
+        content: item
+      })
+    },
+    cencel () {
+      this.well = {
+        name: '',
+        title: ''
+      }
+      this.$refs.commentsBox.cencel()
     }
   }
 }

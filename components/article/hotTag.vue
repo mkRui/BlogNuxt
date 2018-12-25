@@ -1,5 +1,5 @@
 <template>
-  <div class="tag-hot" v-fixedTag>
+  <div class="tag-hot" v-fixedTag='mode'>
     <h2>标签</h2>
     <ul class="clearfix">
       <li v-for="(item, index) in tag" :key="index" @click="viewTagArticle(item.tag)"><span>{{ item.tag }}</span> <span v-if='item.num !== 1'>({{ item.Count }})</span></li>
@@ -9,6 +9,12 @@
 <script>
 export default {
   name: 'tag-hot',
+  props: {
+    mode: {
+      type: Boolean,
+      default: false
+    }
+  },
   computed: {
     tag () {
       return this.$store.state.common.hotTag

@@ -1,21 +1,25 @@
 <template>
   <div class="well">
-    <transition-group
-    v-for="(item, index) in (mobile ? mobileLeave : leave)"
-    :key="index + Math.random()"
-    tag="ul"
-    class="pcLeave"
-    :class="mobile ? 'mobileLeave' : ''" >
-      <li
-        v-for="(elem, ind) in leaveList"
-        v-if="ind % (mobile ? 2 : 4) === index"
-        :key="ind + Math.random()">
-        <p>{{ elem.leaveTime }}</p>
-        <h5 v-if="elem.leaveTitle">{{ elem.leaveTitle }}</h5>
-        <view-marked :marked="elem.leaveContent"></view-marked>
-        <p class="user">{{ elem.leaveUser }}</p>
-      </li>
+    <transition-group name="list" tag="div">
+      <transition-group
+        v-for="(item, index) in (mobile ? mobileLeave : leave)"
+        :key="index + Math.random()"
+        tag="ul"
+        class="pcLeave"
+        name="list"
+        :class="mobile ? 'mobileLeave' : ''" >
+        <li
+          v-for="(elem, ind) in leaveList"
+          v-if="ind % (mobile ? 2 : 4) === index"
+          :key="ind + Math.random()">
+          <p>{{ elem.leaveTime }}</p>
+          <h5 v-if="elem.leaveTitle">{{ elem.leaveTitle }}</h5>
+          <view-marked :marked="elem.leaveContent"></view-marked>
+          <p class="user">{{ elem.leaveUser }}</p>
+        </li>
+      </transition-group>
     </transition-group>
+
   </div>
 </template>
 <script>
@@ -65,6 +69,10 @@ export default {
   width: 100%;
   display: flex;
   margin-top: 20px;
+  div {
+    width: 100%;
+    display: flex;
+  }
   .pcLeave {
     width: 25%;
     padding: 10px;
@@ -90,7 +98,7 @@ export default {
         margin-bottom: 5px;
       }
       &:hover {
-        transform: scale(1.01);
+        transform: scale(1.02);
         box-shadow: 0px 0px 5px rgba(0, 0, 0, .2);
       }
     }

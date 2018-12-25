@@ -7,7 +7,7 @@
       </div>
 
       <!-- 侧边栏 -->
-      <div class="right">
+      <div class="right" v-if="!mobile">
         <div class="control-right">
           <!-- 标签轮播 -->
           <tag-shuffing></tag-shuffing>
@@ -63,6 +63,11 @@ export default {
       }),
       store.dispatch('common/getHotTag')
     ])
+  },
+  computed: {
+    mobile () {
+      return this.$store.state.isMobile
+    }
   }
 }
 </script>
