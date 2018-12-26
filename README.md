@@ -23,15 +23,15 @@ For detailed explanation on how things work, checkout the [Nuxt.js docs](https:/
 
 1.百度 seo push
 
-~~ 2.分享链接（微信 空间 微博）~~
+~2.分享链接（微信 空间 微博~
 
 3.copy 说明
 
 4.移动端 改版 优化任务
 
-5. 网站流量监控
+5.网站流量监控
 
-6. 评论可发邮件
+6.移动端 改版 优化任务
 
 > 更新
 手机端 初步改版 完成
