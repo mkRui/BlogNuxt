@@ -34,8 +34,10 @@ For detailed explanation on how things work, checkout the [Nuxt.js docs](https:/
 6.移动端 改版 优化任务
 
 > 更新
+
 手机端 初步改版 完成
-评论 等 支持 markedown 语法
+
+评论 留言墙 支持 markedown 语法
 
 ---
 >计划
