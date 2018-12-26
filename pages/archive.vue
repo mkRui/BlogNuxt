@@ -1,5 +1,5 @@
 <template>
-  <div class="archive-list">
+  <div class="archive-list" :class="mobile ? 'mobile' : ''">
     <div class="tag">
       <!-- 热门标签 -->
       <hot-tag :mode='true'></hot-tag>
@@ -44,6 +44,9 @@ export default {
   computed: {
     archiveList () {
       return this.$store.state.article.archiveList
+    },
+    mobile () {
+      return this.$store.state.isMobile
     }
   },
   components: {
@@ -55,6 +58,10 @@ export default {
 .archive-list {
   width: 956px;
   margin: 0 auto;
+  &.mobile {
+    width: 100%;
+    padding: 10px;
+  }
   > .tag {
     padding: 15px 0px;
     border-bottom: 2px solid #E3E3E3;

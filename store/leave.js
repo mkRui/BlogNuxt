@@ -1,4 +1,6 @@
 import { leave } from '@/api/index'
+import marked from '@/plugins/marked.js'
+
 
 export const state = () => ({
   leaveList: [],
@@ -24,9 +26,11 @@ export const actions = {
     }
   },
   async moveLeave ({commit, state}, param) {
+    console.log(1)
     if (state.total > state.leaveList.length) {
+      let pageNo = state.pageNo + 1
       const res = await leave.getLeaveMessage({
-        pageNo: state.pageNo += 1,
+        pageNo: pageNo,
         pageSize: 20
       })
       if (res && res.code === 1) {
@@ -38,7 +42,13 @@ export const actions = {
 
 export const mutations = {
   GET_LEAVE_MESSAGE (state, item) {
-    state.leaveList = item.list
+    state.leaveList = item.list.map(elem => {
+      return {
+        ...elem,
+        leaveContent: marked(elem.leaveContent)
+      }
+    })
+    console.log(state.leaveList)
     state.pageNo = item.pageNo
     state.total = item.totalCount
   },
@@ -47,11 +57,16 @@ export const mutations = {
       leaveTime: new Date().toLocaleDateString().split('/').join('-'),
       leaveTitle: item.title,
       leaveUser: item.name,
-      leaveContent: item.content
+      leaveContent: marked(item.content)
     })
   },
   MOVE_LEAVE (state, item) {
-    state.leaveList.push(...item.list)
+    state.leaveList.push(...item.list.map(elem => {
+      return {
+        ...elem,
+        leaveContent: marked(elem.leaveContent)
+      }
+    }))
     state.pageNo = item.pageNo
     state.total = item.totalCount
   }

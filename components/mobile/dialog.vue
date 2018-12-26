@@ -1,8 +1,10 @@
 <template>
 <transition name='fadeIn' mode="out-in">
-  <div class="mobile-dialog" v-show="slideDialog" @touchstart="close">
+  <div class="mobile-dialog" v-show="slideDialog" @touchstart='touchstart' @touchmove='touchmove' @touchend='touchend'>
     <transition name='left' mode="out-in">
-      <div class="main" v-if="slideDialog"></div>
+      <div class="main" v-if="slideDialog">
+        <slot name="main"></slot>
+      </div>
     </transition>
   </div>
 </transition>
@@ -12,7 +14,8 @@ export default {
   name: 'mobileDialog',
   data () {
     return {
-
+      startX: 0,
+      endX: 0
     }
   },
   props: {
@@ -32,7 +35,18 @@ export default {
   methods: {
     close () {
       this.$emit('update:slideDialog', false)
-      console.log(1)
+    },
+    touchstart (e) {
+      this.startX = e.changedTouches[0].pageX
+    },
+    touchmove (e) {
+      this.endX = e.changedTouches[0].pageX
+    },
+    touchend (e) {
+      this.endX = e.changedTouches[0].pageX
+      if (this.startX > this.endX && this.startX - this.endX > 80) {
+        this.$emit('update:slideDialog', false)
+      }
     }
   }
 }

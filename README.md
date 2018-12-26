@@ -1,6 +1,6 @@
 # blogweb
 
-> Nuxt.js project
+> Nuxt.js blog
 
 ## Build Setup
 
@@ -17,6 +17,25 @@ $ npm start
 
 For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
 
-## Backpack
+## blog seo 前台
 
-We use [backpack](https://github.com/palmerhq/backpack) to watch and build the application, so you can use the latest ES6 features (module syntax, async/await, etc.).
+> 待完成功能
+
+1.百度 seo push
+
+2.分享链接（微信 空间 微博）
+
+3.copy 说明
+
+4.移动端 改版 优化任务
+
+5. 网站流量监控
+
+> 更新
+手机端 初步改版 完成
+评论 等 支持 markedown 语法
+
+---
+>计划
+
+bilibili 视频分享 至 blog

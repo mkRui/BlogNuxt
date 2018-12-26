@@ -1,18 +1,15 @@
 <template>
   <div>
-    <div @click="view" v-html="marked" class="viewMarked"></div>
-    <dialog-view :visible.sync="dialogView" :imgSrc='imgSrc' ></dialog-view>
+    <div v-html="marked" class="viewMarked"></div>
   </div>
 </template>
 <script>
-import dialogView from '@/components/common/dialog.vue'
 
 export default {
   name: 'viewMarked',
   data () {
     return {
-      dialogView: false,
-      imgSrc: ''
+      
     }
   },
   props: {
@@ -22,29 +19,16 @@ export default {
     }
   },
   components: {
-    dialogView
   },
   methods: {
-    view (e) {
-      if (e.target.nodeName === 'IMG') {
-        this.dialogView = true
-        this.imgSrc = e.target.getAttribute('data-src')
-        console.log(e.target.getAttribute('data-src'))
-      }
-    }
-  },
-  watch: {
-    dialogView: {
-      handler: function () {
-        this.$store.dispatch('bodyState', this.dialogView)
-      },
-      immediate: true
-    }
+    
   }
 }
 </script>
 <style lang="scss">
 .viewMarked {
+  width: 100%;
+
   @for $i from 1 to 6 {
     h#{$i} {
       border-bottom: 1px solid #eaecef;

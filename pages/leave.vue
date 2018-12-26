@@ -15,6 +15,8 @@
       <well-form @submit="save" slot="main" ref="wellForm"></well-form>
     </well-dialog>
 
+    
+
   </div>
 </template>
 <script>
@@ -42,7 +44,7 @@ export default {
   components: {
     well,
     wellDialog,
-    wellForm
+    wellForm,
   },
   methods: {
     async save (item) {
@@ -56,7 +58,7 @@ export default {
   mounted () {
     window.addEventListener('scroll', () => {
       let innerH = document.body.scrollHeight - document.documentElement.clientHeight
-      if (window.scrollY + 30 >= innerH) {
+      if (window.scrollY >= innerH) {
         this.$store.dispatch('leave/moveLeave')
       }
     })

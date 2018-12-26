@@ -226,6 +226,9 @@ export default {
           color: #ffffff;
         }
       }
+      > h3 {
+        font-size: 1.7rem;
+      }
       > h4 {
         padding: 5px 0px;
         font-weight: normal;

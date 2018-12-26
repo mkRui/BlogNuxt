@@ -14,7 +14,7 @@
           :key="ind + Math.random()">
           <p>{{ elem.leaveTime }}</p>
           <h5 v-if="elem.leaveTitle">{{ elem.leaveTitle }}</h5>
-          <view-marked :marked="elem.leaveContent"></view-marked>
+          <view-marked :marked="elem.leaveContent | emoji"></view-marked>
           <p class="user">{{ elem.leaveUser }}</p>
         </li>
       </transition-group>
@@ -95,7 +95,7 @@ export default {
       h5 {
         font-size: 15px;
         text-align: center;
-        margin-bottom: 5px;
+        margin: 5px 0px;
       }
       &:hover {
         transform: scale(1.02);

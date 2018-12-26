@@ -1,5 +1,5 @@
 <template>
-  <div class="author">
+  <div class="author" :class="mobile ? 'mobile' : ''">
     <!-- 页面标题 -->
     <div class="triangle">
       <div></div>
@@ -7,7 +7,7 @@
     </div>
 
     <!-- 页面封面 -->
-    <div class="titimg">
+    <div class="titimg" :class="mobile ? 'mobile' : ''">
       <img :src="author.authorImg">
     </div>
 
@@ -23,7 +23,7 @@
       <div class="control">
         <!-- 作者信息 -->
           <introduce></introduce>
-          <div>
+          <div v-if="!mobile">
 
             <!-- 热门文章 -->
             <hot-article mode="list"></hot-article>
@@ -67,6 +67,9 @@ export default {
   computed: {
     author () {
       return this.$store.state.global.global
+    },
+    mobile () {
+      return this.$store.state.isMobile
     }
   },
   components: {
@@ -88,6 +91,12 @@ export default {
   box-sizing: border-box;
   padding: 30px;
   margin-bottom: 30px;
+  &.mobile {
+    width: calc(100% - 20px);
+    margin: 0 auto;
+    margin-top: 2rem;
+    padding: 10px;
+  }
   > .triangle {
     height: 24px;
     position: absolute;
@@ -116,6 +125,10 @@ export default {
     height: 300px;
     border-radius: 5px;
     overflow: hidden;
+    &.mobile {
+      margin-top: 1rem;
+      height: auto;
+    }
     img {
       width: 100%;
     }

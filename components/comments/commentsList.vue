@@ -2,7 +2,7 @@
   <div class="comments-list">
     <transition-group tag="ul" mode="out-in" name="list">
       <li v-for="item in commentsList" :key="item.id" class="comments-main">
-          <div class="user-face">
+          <div class="user-face" :class="mobile ? 'mobile' : ''">
             <!-- userface -->
             <img :src="item.face ? item.face : userFace" alt="">
           </div>
@@ -79,6 +79,9 @@ export default {
     },
     pageNo () {
       return this.$store.state.comments.pageNo
+    },
+    mobile () {
+      return this.$store.state.isMobile
     }
   },
   methods: {
@@ -206,6 +209,10 @@ export default {
         img {
           width: 100%;
           height: 100%;
+        }
+        &.mobile {
+          width: 35px;
+          height: 35px;
         }
       }
       &:nth-child(2) {

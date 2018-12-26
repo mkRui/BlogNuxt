@@ -1,6 +1,6 @@
 <template>
-  <transition name="slide-up" mode="out-in">
-    <div class="well-dialog" @click.stop="close" v-if='visible'>
+  <transition name="slide-up" mode="out-in" >
+    <div class="well-dialog" :class="mobile ? 'mobile' : ''" @click.stop="close" v-if='visible'>
       <div class='control' @click.stop=''>
         <header>
           <img src="@/assets/image/loginOne.png" alt="">
@@ -34,6 +34,11 @@ export default {
     close () {
       this.$emit('update:visible', false)
     }
+  },
+  computed: {
+    mobile () {
+      return this.$store.state.isMobile
+    }
   }
 }
 </script>
@@ -44,16 +49,20 @@ export default {
   right: 0px;
   bottom: 0px;
   top: 0px;
-  z-index: 2000;
+  z-index: 2002;
   background: rgba(102, 102, 102, 0.6);
+  &.mobile {
+    .control {
+      width: 90%;
+    }
+  }
   .control {
     width: 630px;
     height: 361px;
     position: fixed;
     top: 50%;
     left: 50%;
-    margin-left: -315px;
-    margin-top: -180px;
+    transform: translate(-50%, -50%);
     background: #fff;
     z-index: 2001;
     > header {

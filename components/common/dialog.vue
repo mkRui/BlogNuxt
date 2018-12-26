@@ -37,7 +37,7 @@ export default {
     left: 0;
     bottom: 0;
     right: 0;
-    z-index: 999;
+    z-index: 20001;
     .mask {
       position: absolute;
       top: 0;
@@ -47,14 +47,13 @@ export default {
       background: #666;
     }
     img {
-      max-width: 80%;
+      width: 60%;
       position: absolute;
       z-index: 1;
       display: block;
-      margin-left: 50%;
-      left: -40%;
+      left: 50%;
       top: 50%;
-      margin-top: -25%;
+      transform: translate(-50%, -50%);
     }
     .close {
       position: absolute;

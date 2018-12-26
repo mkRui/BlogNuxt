@@ -5,7 +5,7 @@
     
     <!-- 头像 输入框 发送按钮 -->
     <div class="comments-main">
-      <div class="user-face">
+      <div class="user-face" :class="mobile ? 'mobile' : ''">
         <el-upload
           class="upload-demo"
           :action="actionUrl"
@@ -84,6 +84,9 @@ export default {
   computed: {
     actionUrl () {
       return PATH + `/article/uploadImg`
+    },
+    mobile () {
+      return this.$store.state.isMobile
     }
   }
 }
@@ -104,6 +107,10 @@ export default {
         .face {
           width: 100%;
           height: 100%;
+        }
+        &.mobile {
+          width: 35px;
+          height: 35px;
         }
       }
       &:nth-child(2) {

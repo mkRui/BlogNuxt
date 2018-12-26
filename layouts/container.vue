@@ -7,7 +7,7 @@
     </div>
     
     <!-- 内容主体 -->
-    <div class="nuxt-Control" :style="{ width: mobile ? '100%' : '1024px' }">
+    <div class="nuxt-Control" :style="{ width: mobile ? '100%' : '1024px' }" @click="view" >
       <transition name="list" mode="out-in">
         <nuxt></nuxt>
       </transition>
@@ -15,6 +15,10 @@
 
     <!-- 回到顶部 -->
     <div class="scrollB el-icon-arrow-up" v-scroll @click="scroll"></div>
+
+    <!-- 图片预览 -->
+    <dialog-view :visible.sync="dialogView" :imgSrc='imgSrc' ></dialog-view>
+
   </div>
 </template>
 <script>
@@ -22,14 +26,19 @@ import pcHead from '@/components/pc/head.vue'
 
 import mobileHead from '@/components/mobile/head.vue'
 
+import dialogView from '@/components/common/dialog.vue'
+
 export default {
   name: 'container',
   components: {
     pcHead,
-    mobileHead
+    mobileHead,
+    dialogView
   },
   data () {
     return {
+      dialogView: false,
+      imgSrc: ''
     }
   },
   computed: {
@@ -51,6 +60,21 @@ export default {
           clearInterval(timer)
         }
       }, 20)
+    },
+    view (e) {
+      if (e.target.nodeName === 'IMG') {
+        if (!e.target.getAttribute('data-src')) return
+        this.dialogView = true
+        this.imgSrc = e.target.getAttribute('data-src')
+      }
+    }
+  },
+  watch: {
+    dialogView: {
+      handler: function () {
+        this.$store.dispatch('bodyState', this.dialogView)
+      },
+      immediate: true
     }
   }
 }

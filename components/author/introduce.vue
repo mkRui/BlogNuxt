@@ -7,7 +7,7 @@
           <span>{{ author[item.content] }}</span>
         </li>
       </ul>
-      <div class="peopleImg">
+      <div class="peopleImg" :class="mobile ? 'mobile' : ''">
           <img :src="author.authorFace" alt="">
       </div>
     </div>
@@ -30,15 +30,15 @@ export default {
         {icon: 'icon-music', content: 'music'},
         {icon: 'icon-like', content: 'hobby'},
         {icon: 'icon-submit', content: 'introduce'}
-      ],
-      title: 'Hello Everyone',
-      mintitle: 'hi welcome to our blog',
-      content: '这是我和朋友们一起写的博客，我们非常喜欢技术带来的便利和这种酷的感觉，在书写的过程中受到了很多人的建议以便我们能向跟好的方向修改～，在这个过程中我们更能感受到自己技能的提升，我们对此充满喜悦，同时也欢迎各位来此留言让我们共同成长！最后 以梦想为名（In the name of dreams）'
+      ]
     }
   },
   computed: {
     author () {
       return this.$store.state.global.global
+    },
+    mobile () {
+      return this.$store.state.isMobile
     }
   }
 }
@@ -69,6 +69,15 @@ export default {
           max-width: 200px;
           margin-right: 10px;
           margin-top: 10px;
+        }
+        &.mobile {
+          width: 40%;
+          margin-top: 2rem;
+          img {
+            max-width: 100%;
+            margin-right: 10px;
+            margin-top: 10px;
+          }
         }
       }
     }

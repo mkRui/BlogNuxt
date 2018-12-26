@@ -1,6 +1,7 @@
 export const state = () => ({
   bodyState: false,
-  isMobile: false
+  isMobile: false,
+  search: false
 })
 
 export const actions = {
@@ -10,6 +11,9 @@ export const actions = {
   },
   bodyState ({commit}, param) {
     commit('BODY_STATE', param)
+  },
+  search ({commit}, param) {
+    commit('SEARCH', param)
   }
 }
 
@@ -19,5 +23,8 @@ export const mutations = {
   },
   NUXT_SERVICE_INIT (state, item) {
     state.isMobile = item
+  },
+  SEARCH (state, item) {
+    state.search = item
   }
 }

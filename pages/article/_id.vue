@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="main">
+    <div class="main" :class="mobile ? 'mobile' : ''">
       <div class="left">
         <div class="detail">
           <div class="triangle">
@@ -63,7 +63,7 @@
         </div>
         <comments></comments>
       </div>
-      <div class="right">
+      <div class="right" v-if="!mobile">
         <div class="control-right">
             <!-- 标签轮播 -->
             <tag-shuffing></tag-shuffing>
@@ -96,6 +96,8 @@ import viewMarked from '@/components/common/viewMarked.vue'
 import linkList from '@/components/common/link.vue'
 
 import comments from '@/components/comments/commentsCon.vue'
+
+import linkShare from '@/components/common/linkshare.vue'
 
 export default {
   layout: 'container',
@@ -133,6 +135,9 @@ export default {
     // },
     article () {
       return this.$store.state.article.detail
+    },
+    mobile () {
+      return this.$store.state.isMobile
     }
       // return marked(this.$store.state.article.detail.content)
       // return this.$store.state.article.detail.content
@@ -162,6 +167,9 @@ export default {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  &.mobile {
+    padding: 10px;
+  }
   .left {
     width: 100%;
     .detail {
