@@ -26,7 +26,6 @@ export const actions = {
     }
   },
   async moveLeave ({commit, state}, param) {
-    console.log(1)
     if (state.total > state.leaveList.length) {
       let pageNo = state.pageNo + 1
       const res = await leave.getLeaveMessage({
@@ -48,7 +47,6 @@ export const mutations = {
         leaveContent: marked(elem.leaveContent)
       }
     })
-    console.log(state.leaveList)
     state.pageNo = item.pageNo
     state.total = item.totalCount
   },

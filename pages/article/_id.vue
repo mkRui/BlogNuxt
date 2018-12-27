@@ -56,9 +56,12 @@
             <hr class='hr'>
 
             <div class="link">
-              <span class="iconfont icon-weibo"></span>
+
+              <!-- 分享链接 -->
+              <link-share></link-share>
+              <!-- <span class="iconfont icon-weibo"></span>
               <span class="iconfont icon-qq"></span>
-              <span class="iconfont icon-wechat"></span>
+              <span class="iconfont icon-wechat"></span> -->
             </div>
         </div>
         <comments></comments>
@@ -115,7 +118,8 @@ export default {
     hotTag,
     linkList,
     viewMarked,
-    comments
+    comments,
+    linkShare
   },
   // 指定定容器
   layout: 'container',
@@ -254,19 +258,6 @@ export default {
           &.isLike {
             color: #F56C6C;
           }
-        }
-      }
-      .link {
-        display: flex;
-        justify-content: flex-start;
-        span {
-          display: block;
-          font-size: 20px;
-          padding: 1px 15px;
-          background: #f4f5f5;
-          // color: #fff;
-          border-radius: 5px;
-          margin-right: 10px;
         }
       }
     }

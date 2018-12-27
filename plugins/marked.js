@@ -65,8 +65,6 @@ export default (content, tags, parseHtml = false) => {
     return ''
   }
 
-  // console.log(content)
-
   // 生成目录树
   // var toc = []
 

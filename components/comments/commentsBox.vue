@@ -98,7 +98,6 @@ export default {
       }
     },
     cancel () {
-      console.log(1)
       this.$refs.comments.innerText = ''
     }
   }
