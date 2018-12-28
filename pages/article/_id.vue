@@ -108,7 +108,7 @@ export default {
   name: 'detail',
   data () {
     return {
-      content: '',
+      // content: '',
       isLike: false
     }
   },
@@ -134,9 +134,9 @@ export default {
     ])
   },
   computed: {
-    // content () {
-    //   return marked(this.article.content)
-    // },
+    content () {
+      return marked(this.article.content)
+    },
     article () {
       return this.$store.state.article.detail
     },
@@ -151,6 +151,9 @@ export default {
       let like = (window.localStorage.getItem('articleLike') || '').split(',')
       if (!like.includes(this.$route.params.id)) {
         like.push(this.$route.params.id)
+        this.$store.dispatch('article/praiseArticle', {
+          id: this.$route.params.id
+        })
         this.isLike = true
       }
       window.localStorage.setItem('articleLike', like.join(','))
@@ -159,7 +162,7 @@ export default {
   mounted () {
     let like = (window.localStorage.getItem('articleLike') || '').split(',')
     // this.$store.dispatch('article/getArticleDetail', query)
-    this.content = marked(this.article.content)
+    // this.content = marked(this.article.content)
     if (like.includes(this.$route.params.id)) {
       this.isLike = true
     }

@@ -19,6 +19,20 @@ export function getHotArticle (params) {
   .catch((e) => console.error(e))
 }
 
+// 文章阅读量增加
+export function readArticle (params) {
+  return axios.post('/article/readArticle', params)
+  .then((res) => res.data)
+  .catch((e) => console.error(e))
+}
+
+// 文章点赞
+export function praiseArticle (params) {
+  return axios.post('/article/praiseArticle', params)
+  .then((res) => res.data)
+  .catch((e) => console.error(e))
+}
+
 // 文章归档
 export function articleArchive (params) {
   return axios.get('/article/articleArchive')

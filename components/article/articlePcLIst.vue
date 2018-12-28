@@ -10,7 +10,7 @@
         <h4><span>{{ item.articleComments }}</span> 条评论 · <span>{{ item.readArticleNumber }}</span> 人阅读 · <span>{{ item.praise }}</span> 人点赞</h4>
         <div v-if='!item.cover'>
           <div class="content">{{ item.articleMin }}</div>
-          <div class="more"><nuxt-link :to="`/article/${item.id}`">Read More</nuxt-link></div>
+          <div class="more"><nuxt-link :to="`/article/${item.id}`" @click.native="addRead(item.id)">Read More</nuxt-link></div>
         </div>
         <div class="imgState" v-else>
           <div class="image">
@@ -18,7 +18,7 @@
           </div>
           <div>
             <div class="content">{{ item.articleMin }}</div>
-            <div class="more"><nuxt-link :to="`/article/${item.id}`">Read More</nuxt-link></div>
+            <div class="more"><nuxt-link :to="`/article/${item.id}`" @click.native="addRead(item.id)">Read More</nuxt-link></div>
           </div>
         </div>
       </li>
@@ -64,6 +64,11 @@ export default {
     },
     more () {
       this.switchPage(this.$store.state.article.pageNo + 1, this.$route.query)
+    },
+    addRead (item) {
+      this.$store.dispatch('article/readArticle', {
+        id: item
+      })
     }
   },
   computed: {

@@ -46,6 +46,17 @@ export const actions = {
     if (res && res.code === 1) {
       commit('ARTICLE_ARCHIVE', res.result)
     }
+  },
+  // 文章点赞
+  async praiseArticle ({ commit }, param) {
+    const res = await article.praiseArticle(param)
+    if (res && res.code === 1) {
+      commit('PRAISE_ARTICLE')
+    }
+  },
+  // 文章阅读
+  async readArticle ({ commit }, param) {
+    await article.readArticle(param)
   }
 }
 
@@ -66,5 +77,9 @@ export const mutations = {
   },
   ARTICLE_ARCHIVE (state, item) {
     state.archiveList = item
+  },
+  PRAISE_ARTICLE (state, item) {
+    console.log(state.detail.praise)
+    state.detail.praise += 1
   }
 }

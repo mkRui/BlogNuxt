@@ -44,6 +44,7 @@ export default {
     line-height: 2;
     display: flex;
     justify-content: flex-start;
+    flex-wrap: wrap;
     li {
       background: #fff;
       border: 1px solid #cdcdcd;
@@ -53,7 +54,7 @@ export default {
       text-align: center;
       min-width:80px;
       box-sizing: border-box;
-      padding: 1px;
+      padding: 1px 6px;
       color: #000;
       &:hover {
         cursor: pointer;
