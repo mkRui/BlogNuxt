@@ -2,7 +2,7 @@
   <div class="comments-list">
     <transition-group tag="ul" mode="out-in" name="list">
       <li v-for="item in commentsList" :key="item.id" class="comments-main">
-          <div class="user-face" :class="mobile ? 'mobile' : ''">
+          <div class="user-face" v-if="!mobile" :class="mobile ? 'mobile' : ''">
             <!-- userface -->
             <img :src="item.face ? item.face : userFace" alt="">
           </div>

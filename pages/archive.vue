@@ -2,7 +2,7 @@
   <div class="archive-list" :class="mobile ? 'mobile' : ''">
     <div class="tag">
       <!-- 热门标签 -->
-      <hot-tag :mode='true'></hot-tag>
+      <hot-tag :mode='true' :all='true'></hot-tag>
     </div>
 
     <div class="main">

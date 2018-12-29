@@ -2,11 +2,11 @@
   <div :class="mode">
     <transition-group tag="ul" name="list" mode="out-in">
       <li v-for="item in article" :key="item.id" @click="viewDetail(item.id)" >
-        <div class="banner" v-if='item.cover'>
+        <!-- <div class="banner" v-if='item.cover'>
           <img :src="item.cover">
-        </div>
+        </div> -->
         <div class="font">
-          <h5>{{ item.articleTitle }}</h5>
+          <h5>{{ item.articleTitle.length > 10 ? item.articleTitle.slice(0, 10) + '....' : item.articleTitle }}</h5>
           <p>{{ item.articleMin }}</p>
         </div>
       </li>
@@ -84,7 +84,7 @@ export default {
   padding-left: 10px;
   height: 300px;
   ul {
-    width: 100%;
+    width: 300px;
     li {
       background: #fff;
       border-radius: 5px;

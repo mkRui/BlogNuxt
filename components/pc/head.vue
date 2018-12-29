@@ -86,6 +86,7 @@ export default {
     background-color: rgb(235,235,235);
     transition: .35s;
     .header {
+      cursor: pointer;
       width: 1024px;
       height: 80px;
       margin: 0 auto;
@@ -115,7 +116,6 @@ export default {
       width: 100%;
       height: 40px;
       background-color: $head;
-
       .auto-control {
         width: 1024px;
         margin: 0 auto;
@@ -125,6 +125,7 @@ export default {
         ul {
           display: flex;
           li {
+            cursor: pointer;
             width: 100px;
             height: 40px;
             color: #fff;

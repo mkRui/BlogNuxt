@@ -82,6 +82,7 @@ export default {
 <style lang='scss' scoped>
 .link-share {
   width: 100%;
+  height: 40px;
   display: flex;
   justify-content: flex-start;
   margin-right: 10px;
@@ -90,9 +91,10 @@ export default {
     font-size: 20px;
     padding: 1px 15px;
     background: #f4f5f5;
-    // color: #fff;
+    color: #666;
     border-radius: 5px;
     margin-right: 10px;
+    cursor: pointer;
   }
 }
 </style>

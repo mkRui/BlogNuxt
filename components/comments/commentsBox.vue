@@ -156,6 +156,7 @@ export default {
           cursor: pointer;
           padding: 0;
           border: 0;
+          color: #666;
         }
       } 
     }

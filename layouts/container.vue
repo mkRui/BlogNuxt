@@ -19,6 +19,9 @@
     <!-- 图片预览 -->
     <dialog-view :visible.sync="dialogView" :imgSrc='imgSrc' ></dialog-view>
 
+    <!--footer -->
+    <div class="footer">京ICP备18010810号-1</div>
+
   </div>
 </template>
 <script>
@@ -89,6 +92,7 @@ export default {
   }
   .nuxt-Control {
     margin: 0 auto;
+    min-height: 99vh;
   }
   .scrollB {
     position: fixed;
@@ -109,6 +113,13 @@ export default {
     transform: translateX(0);
     -webkit-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
     transition:  all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  .footer {
+    width: 100%;
+    line-height: 2;
+    text-align: center;
+    color: #fff;
+    background: $head;
   }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="link-list" v-fixedTag>
+  <div class="link-list">
     <div class='thislink'><nuxt-link to="/author">关于作者</nuxt-link></div>
     <div>···</div>
     <div class='thislink'><nuxt-link to="/leave">留言墙</nuxt-link></div>
@@ -17,19 +17,18 @@ export default {
   display: flex;
   justify-content: flex-start;
   div {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin: 10px 10px 0px 10px;
   }
   .thislink {
     margin-left: 0px;
     margin-right: 0px;
   }
-  &.show {
-    position: fixed;
-    top: 0;
-    transform: translateY(160px);
-    transition: .35s;
-  }
+  // &.show {
+  //   position: fixed;
+  //   top: 0;
+  //   transform: translateY(290px);
+  //   transition: .35s;
+  // }
 }
 
 </style>

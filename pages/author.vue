@@ -153,9 +153,9 @@ export default {
       display: flex;
     }
     .link-control {
-      margin-left: 130px;
+      display: flex;
+      justify-content: center;
     }
   }
-
 }
 </style>

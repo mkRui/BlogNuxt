@@ -4,8 +4,8 @@
     <user-info ref="userInfo"></user-info>
     
     <!-- 头像 输入框 发送按钮 -->
-    <div class="comments-main">
-      <div class="user-face" :class="mobile ? 'mobile' : ''">
+    <div class="comments-main" :class="mobile ? 'mobile' : ''">
+      <div class="user-face" v-if="!mobile">
         <el-upload
           class="upload-demo"
           :action="actionUrl"
@@ -97,6 +97,9 @@ export default {
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
+    &.mobile {
+      display: block;
+    }
     div {
       &.user-face {
         width: 60px;

@@ -1,7 +1,7 @@
 <template>
   <div :class="mobile ? 'articleMobileList' : 'articleList'">
     <transition-group tag="ul" name="list" mode="out-in">
-      <li v-for="item in article" :key="item.id">
+      <li v-for="item in article" :key="item.id" @click.stop="addReadRoute(item)">
         <div class="triangle">
           <div></div>
           <div>{{ item.createTime }}</div>
@@ -69,6 +69,10 @@ export default {
       this.$store.dispatch('article/readArticle', {
         id: item
       })
+    },
+    addReadRoute (item) {
+      this.$router.push(`/article/${item.id}`)
+      this.addRead(item.id)
     }
   },
   computed: {
@@ -97,6 +101,7 @@ export default {
     ul {
       margin-top: 40px;
       li{
+        cursor: pointer;
         // max-width: 630px;
         min-height: 200px;
         position: relative;
@@ -104,7 +109,6 @@ export default {
         box-sizing: border-box;
         border-radius: 8px;
         padding: 20px;
-        padding-left: 40px;
         margin-bottom: 40px;
         > .triangle {
           width: 140px;
@@ -134,44 +138,44 @@ export default {
         }
         h3 {
           font-weight: 500;
-          font-size: 25px;
+          font-size: 21px;
           padding-top: 13px;
           padding-bottom:10px;
         }
         h4 {
           padding-bottom:10px;
           font-weight: normal;
-          span {
-            font-weight: bolder;
-          }
         }
         .imgState {
-          display: flex;
+          // display: flex;
           .image {
-            min-width: 200px;
-            max-width: 200px;
+            width: 100%;
             height:200px;
             background: #f0f0f0;
             margin-right: 20px;
             overflow: hidden;
+            position: relative;
             img {
-              width: 200%;
+              position: absolute;
+              width: 100%;
+            }
+            &:hover img {
+              transform: scale(1.2) rotate(5deg);
             }
           }
         }
         
         .content {
-          min-height:159px;
-          max-height: 160px;
           line-height: 2;
-          font-weight:bolder;
           font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
           display: -webkit-box;
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 3;
           overflow: hidden;
+          color: #666666;
         }
         .more {
+          margin-top: 10px;
           text-align: right;
           height: 40px;
           a {
@@ -200,6 +204,7 @@ export default {
    padding: 10px 10px;
    margin-top: 1.5rem;
    li {
+     cursor: pointer;
      position: relative;
      background: #fff;
      margin-bottom: 20px;
@@ -232,7 +237,7 @@ export default {
         }
       }
       > h3 {
-        font-size: 1.7rem;
+        font-size: 1.3rem;
       }
       > h4 {
         padding: 5px 0px;

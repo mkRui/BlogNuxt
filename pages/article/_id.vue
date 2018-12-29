@@ -37,7 +37,7 @@
               <div>
                 <i class="iconfont icon-like" @click="like" :class="isLike ? 'isLike' : ''">{{ article.praise }}</i>
               </div>
-              <div>
+              <div v-if="!mobile">
                 <i class="iconfont icon-tag"></i>
                 <span
                   v-for="(item, index) in article.tag.split(',')"
@@ -161,6 +161,7 @@ export default {
   },
   mounted () {
     let like = (window.localStorage.getItem('articleLike') || '').split(',')
+    window.scrollTo(0, 0)
     // this.$store.dispatch('article/getArticleDetail', query)
     // this.content = marked(this.article.content)
     if (like.includes(this.$route.params.id)) {
@@ -176,9 +177,12 @@ export default {
   justify-content: space-between;
   &.mobile {
     padding: 10px;
+    >.left {
+      width: 100%;
+    }
   }
   .left {
-    width: 100%;
+    width: 672px;
     .detail {
       margin-top: 40px;
       background-color: #fff;
@@ -266,7 +270,7 @@ export default {
     }
   }
   .right {
-    width: 430px;
+    width: 282px;
     margin-left: 70px;
     .control-right {
       margin-top: 40px;
