@@ -22,8 +22,9 @@
           </div>
         </div>
       </li>
+      <span class="backFont" v-if="!article.length"  :key="Math.random()">暂无文章。。。。。</span>
     </transition-group>
-    <div class="more-btn" >
+    <div class="more-btn" v-if="article.length" >
       <span @click="more" v-if="article.length !== count">
         MORE
       </span>
@@ -189,6 +190,11 @@ export default {
             background-color: $border;
           }
         }
+      }
+      .backFont {
+        font-size: 20px;
+        color: #707070;
+        padding-left: 30px;
       }
     }
     .more-btn {

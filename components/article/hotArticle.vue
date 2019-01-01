@@ -10,6 +10,7 @@
           <p>{{ item.articleMin }}</p>
         </div>
       </li>
+      <li class="backFont" :key="Math.random()">暂无文章</li>
     </transition-group>
   </div>
 </template>
@@ -50,6 +51,9 @@ export default {
       box-sizing: border-box;
       padding: 10px;
       display: flex;
+      &.backFont {
+        justify-content: center;
+      }
       .banner {
         min-width: 70px;
         max-width: 70px;
@@ -93,6 +97,9 @@ export default {
       box-sizing: border-box;
       padding: 10px;
       display: flex;
+      &.backFont {
+        justify-content: center;
+      }
       .banner {
         display: none;
       }

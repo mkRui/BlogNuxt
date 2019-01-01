@@ -99,8 +99,9 @@ export default {
   async mounted () {
     await this.$store.dispatch('common/getHotTag')
     this.technology = this.$store.state.common.hotTag.map(item => item.tag)
-    console.log(this.technology)
-    this.teration()
+    if (this.technology.length) {
+      this.teration()
+    }
   }
 }
 </script>
