@@ -64,6 +64,9 @@ export default {
       store.dispatch('global/getGlobal', {id: 1})
     ])
   },
+  head () {
+    return { title: `${this.$store.state.global.global.authorTitle}` }
+  },
   computed: {
     author () {
       return this.$store.state.global.global

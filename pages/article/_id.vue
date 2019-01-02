@@ -121,6 +121,9 @@ export default {
     comments,
     linkShare
   },
+  head () {
+    return { title: `${this.$store.state.global.global.authorTitle}` }
+  },
   // 指定定容器
   layout: 'container',
   fetch ({ store, params, query }) {

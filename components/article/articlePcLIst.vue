@@ -194,7 +194,7 @@ export default {
       .backFont {
         font-size: 20px;
         color: #707070;
-        padding-left: 30px;
+        // padding-left: 30px;
       }
     }
     .more-btn {

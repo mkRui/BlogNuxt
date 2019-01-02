@@ -9,14 +9,18 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: pkg.name,
+    title: '以梦想为名',
+    titleTemplate: '%s - anRui',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { hid: 'description', name: 'description', content: pkg.description },
+      { hid: 'description', name: 'description', content: '读书,代码,生活,一起学习吧,以梦想为名' },
+      { hid: 'keywords', name: 'keywords', content: '前端开发,JavaScript,TypeScript,Node,React,Vue,Nuxt' },
+      { hid: 'author', name: 'author', content: 'anRui, scrscript@163.com' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/rui.ico' }
     ]
   },
 

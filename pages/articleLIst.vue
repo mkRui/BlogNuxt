@@ -3,6 +3,12 @@
     <div class="main">
       <!-- 文章列表 -->
       <div class="left">
+        <!-- 页面搜索 -->
+        <div class="search" v-if="this.$route.query.keyWord">
+          <i class="el-icon-search">{{ this.$route.query.keyWord }}</i>
+          <div class="hr"></div>
+        </div>
+
         <articlePcList></articlePcList>
       </div>
 
@@ -48,6 +54,9 @@ export default {
     hotTag,
     linkList
   },
+  head () {
+    return { title: `${this.$route.query.classify ? this.$route.query.classify : '以梦想为名'}` }
+  },
   fetch ({ store, params, query }) {
     return Promise.all([
       store.dispatch('article/getArticleList', {
@@ -78,6 +87,19 @@ export default {
   justify-content: space-between;
   .left {
     width: 100%;
+    .search {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-top: 45px;
+      i {
+        padding-right: 10px;
+        font-size: 17px;
+        &::before {
+          margin-right: 10px;
+        }
+      }
+    }
   }
   .right {
     width: 430px;

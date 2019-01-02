@@ -10,7 +10,13 @@
       <div class="auto-control">
         <!-- 导航 -->
         <ul>
-          <li v-for="(item, index) in nav" :key="index" :class="item.tagTitle === $route.query.classify ? 'active' : ''" @click="Link(item.tagTitle)"> {{ item.tagTitle }}</li>
+          <li
+            v-for="(item, index) in nav"
+            :key="index"
+            :class="item.tagTitle === $route.query.classify ? 'active' : ''"
+            @click="Link(item.tagTitle)">
+            {{ item.tagTitle }}
+          </li>
         </ul>
 
         <!-- 搜索按钮 -->
@@ -54,6 +60,15 @@ export default {
       this.$router.push('/articleList')
     }
   },
+  watch: {
+    '$route':{
+      handler: function (to, form) {
+        if (!to.query.keyWord) {
+          this.keyword = ''
+        }
+      }
+    }
+  },
   async mounted () {
     if (this.$route.query.keyWord) {
       this.keyword = this.$route.query.keyWord
@@ -93,7 +108,6 @@ export default {
       font-family: 'Monda', sans-serif;
       text-transform: uppercase;
       box-sizing: border-box;
-      padding-left: 30px;
       background-image: url('./../../assets/image/back.png');
       background-position-y: -515px;
       background-position-x: -170px;
@@ -118,6 +132,7 @@ export default {
       background-color: $head;
       .auto-control {
         width: 1024px;
+        height: 100%;
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
@@ -126,7 +141,7 @@ export default {
           display: flex;
           li {
             cursor: pointer;
-            width: 100px;
+            padding: 0px 15px;
             height: 40px;
             color: #fff;
             text-align: center;
@@ -145,6 +160,7 @@ export default {
           display: flex;
           justify-content: flex-end;
           align-items: center;
+          height: 100%;
           i {
             color: #fff;
             font-size: 19px;

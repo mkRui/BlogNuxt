@@ -35,6 +35,9 @@ export default {
       list: []
     }
   },
+  head: {
+    title: ' 归档'
+  },
   fetch ({ store, params, query }) {
     return Promise.all([
       store.dispatch('common/getHotTag'),

@@ -30,6 +30,9 @@ export default {
   name: 'leave',
   // 指定定容器
   layout: 'container',
+  head: {
+    title: '留言墙'
+  },
   data () {
     return {
       dialog: false
