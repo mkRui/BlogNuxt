@@ -10,7 +10,7 @@
           <p>{{ item.articleMin }}</p>
         </div>
       </li>
-      <li class="backFont" :key="Math.random()">暂无文章</li>
+      <li class="backFont" v-if="!article.length" :key="Math.random()">暂无文章</li>
     </transition-group>
   </div>
 </template>
@@ -106,7 +106,7 @@ export default {
       .font {
         display: flex;
         h5 {
-          min-width: 150px;;
+          min-width: 175px;;
           font-weight: normal;
           font-size: 15px;
           margin-bottom: 5px;

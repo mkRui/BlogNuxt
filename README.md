@@ -29,7 +29,7 @@ For detailed explanation on how things work, checkout the [Nuxt.js docs](https:/
 
 4.移动端 改版 优化任务
 
-5.网站流量监控
+5.网站流量监控 Google
 
 6.移动端 改版 优化任务
 

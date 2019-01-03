@@ -122,7 +122,7 @@ export default {
     linkShare
   },
   head () {
-    return { title: `${this.$store.state.global.global.authorTitle}` }
+    return { title: `${this.$store.state.article.detail.title}` }
   },
   // 指定定容器
   layout: 'container',
