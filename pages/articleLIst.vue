@@ -4,7 +4,7 @@
       <!-- 文章列表 -->
       <div class="left">
         <!-- 页面搜索 -->
-        <div class="search" v-if="this.$route.query.keyWord">
+        <div class="search" :class="mobile ? 'mobile' : ''" v-if="this.$route.query.keyWord">
           <i class="el-icon-search">{{ this.$route.query.keyWord }}</i>
           <div class="hr"></div>
         </div>
@@ -87,12 +87,18 @@ export default {
   justify-content: space-between;
   .left {
     width: 100%;
+    overflow: hidden;
     .search {
       display: flex;
       justify-content: flex-start;
       align-items: center;
       margin-top: 45px;
+      &.mobile {
+        padding: 10px;
+        margin-top: 1.8rem;
+      }
       i {
+        white-space: nowrap;
         padding-right: 10px;
         font-size: 17px;
         &::before {

@@ -2,11 +2,11 @@
   <div class="comments-list">
     <transition-group tag="ul" mode="out-in" name="list">
       <li v-for="item in commentsList" :key="item.id" class="comments-main">
-          <div class="user-face" v-if="!mobile" :class="mobile ? 'mobile' : ''">
+          <div class="user-face" v-if="!mobile">
             <!-- userface -->
             <img :src="item.face ? item.face : userFace" alt="">
           </div>
-          <div>
+          <div class="content" :class="mobile ? 'mobile' : ''">
             <!-- 姓名 / 发布时间 -->
             <p>
               <span>{{ item.commentsUser }}</span>
@@ -210,13 +210,12 @@ export default {
           width: 100%;
           height: 100%;
         }
-        &.mobile {
-          width: 35px;
-          height: 35px;
-        }
       }
-      &:nth-child(2) {
+      &.content {
         width: 88%;
+        &.mobile {
+          width: 100%;
+        }
         > p {
           display: flex;
           justify-content: space-between;

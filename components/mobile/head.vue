@@ -9,7 +9,7 @@
 
       <!-- 输入框 -->
       <div class="input" :class="search ? 'active' : 'leave'">
-        <input type="text" placeholder="客官请输入关键字" v-model="keyWord" @keyup.enter='searchArticle'>
+        <input type="text" placeholder="客官请输入关键字" v-model="keyWord" @keydown.enter='searchArticle'>
         <i class="el-icon-close" @click="leave"></i>
       </div>
     </div>
@@ -58,7 +58,7 @@ export default {
       this.$router.push({
         path: '/articleList',
         query: {
-          keyWord: this.keyword
+          keyWord: this.keyWord
         }
       })
       this.$store.dispatch('search', false)
