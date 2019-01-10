@@ -42,6 +42,7 @@ export default {
 
   .text-img {
     width: 100%;
+    margin: 10px 0px;
     img {
       width: 100%;
       cursor: pointer;
@@ -60,8 +61,7 @@ export default {
     padding: 0 1em;
     color: #6a737d;
     border-left: 0.25em solid #dfe2e5;
-    margin-top: 0;
-    margin-bottom: 16px;
+    margin-bottom: 16px 0px;
   }
 
   pre {
@@ -70,6 +70,7 @@ export default {
     background: #f6f8fa;
     overflow-y: hidden;
     overflow-x: auto;
+    margin: 10px 0px;
   }
 
   ol {
@@ -82,6 +83,7 @@ export default {
   }
 
   p {
+    line-height: 2;
     a {
       color: #666;
     }
