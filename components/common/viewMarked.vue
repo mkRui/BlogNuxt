@@ -61,7 +61,7 @@ export default {
     padding: 0 1em;
     color: #6a737d;
     border-left: 0.25em solid #dfe2e5;
-    margin-bottom: 16px 0px;
+    margin: 16px 0px;
   }
 
   pre {
@@ -83,7 +83,7 @@ export default {
   }
 
   p {
-    line-height: 2;
+    line-height: 2.5;
     a {
       color: #666;
     }
