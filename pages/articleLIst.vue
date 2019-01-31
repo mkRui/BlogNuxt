@@ -15,11 +15,18 @@
       <!-- 侧边栏 -->
       <div class="right" v-if="!mobile">
         <div class="control-right">
-          <!-- 标签轮播 -->
-          <tag-shuffing></tag-shuffing>
 
-          <!-- 热门文章 -->
-          <hot-article></hot-article>
+          <div class="bg-write write">
+            <header>
+              <!-- 标签轮播 -->
+              <tag-shuffing></tag-shuffing>
+            </header>
+            
+
+            <!-- 热门文章 -->
+            <hot-article></hot-article>
+          </div>
+          
 
           <!-- 热门标签 -->
           <hot-tag></hot-tag>
@@ -108,10 +115,18 @@ export default {
     }
   }
   .right {
-    width: 430px;
-    margin-left: 70px;
+    min-width: 297px;
+    width: 297px;
+    margin-left: 20px;
     .control-right {
       margin-top: 40px;
+      > .write {
+        header{
+          padding: 10px 10px 0px 10px;
+        }
+        border-radius: 8px;
+        margin-bottom: 10px;
+      }
     }
   }
 }

@@ -3,14 +3,12 @@
     <transition-group tag="ul" name="list" mode="out-in">
       <li v-for="item in article" :key="item.id" @click.stop="addReadRoute(item)">
         <div class="triangle">
-          <div></div>
           <div>{{ item.createTime }}</div>
         </div>
         <h3>{{ item.articleTitle }}</h3>
         <h4><span>{{ item.articleComments }}</span> 条评论 · <span>{{ item.readArticleNumber }}</span> 人阅读 · <span>{{ item.praise }}</span> 人点赞</h4>
         <div v-if='!item.cover'>
           <div class="content">{{ item.articleMin }}</div>
-          <div class="more"><nuxt-link :to="`/article/${item.id}`" @click.native="addRead(item.id)">Read More</nuxt-link></div>
         </div>
         <div class="imgState" v-else>
           <div class="image">
@@ -18,7 +16,6 @@
           </div>
           <div>
             <div class="content">{{ item.articleMin }}</div>
-            <div class="more"><nuxt-link :to="`/article/${item.id}`" @click.native="addRead(item.id)">Read More</nuxt-link></div>
           </div>
         </div>
       </li>
@@ -110,15 +107,14 @@ export default {
         box-sizing: border-box;
         border-radius: 8px;
         padding: 20px;
-        margin-bottom: 40px;
+        margin-bottom: 20px;
         > .triangle {
           width: 140px;
           height: 24px;
           position: absolute;
-          top: -10px;
-          left: 20px;
-          div:nth-child(2) {
-            float: left;
+          top: 0px;
+          left: 0px;
+          > div {
             width: 130px;
             height: 24px;
             color: #fff;
@@ -127,14 +123,7 @@ export default {
             font-weight: bolder;
             font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             background-color: $border;
-          }
-          div:nth-child(1) {
-            float: left;
-            width: 0px;
-            height: 0px;
-            border-top: solid 10px transparent;
-            border-right: solid 10px $border;
-            color: #ffffff;
+            border-radius: 9px 0px 9px 0px;
           }
         }
         h3 {
@@ -156,6 +145,7 @@ export default {
             margin-right: 20px;
             overflow: hidden;
             position: relative;
+            margin-bottom: 10px;
             img {
               position: absolute;
               width: 100%;
@@ -222,8 +212,7 @@ export default {
         position: absolute;
         top: -10px;
         left: 20px;
-        div:nth-child(2) {
-          float: left;
+        > div {
           width: 130px;
           height: 24px;
           color: #fff;
@@ -232,14 +221,7 @@ export default {
           font-weight: bolder;
           font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
           background-color: $border;
-        }
-        div:nth-child(1) {
-          float: left;
-          width: 0px;
-          height: 0px;
-          border-top: solid 10px transparent;
-          border-right: solid 10px $border;
-          color: #ffffff;
+          border-radius: 9px 0px 9px 0px;
         }
       }
       > h3 {

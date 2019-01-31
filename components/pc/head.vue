@@ -69,7 +69,7 @@ export default {
       }
     }
   },
-  async mounted () {
+  async beforeCreate () {
     if (this.$route.query.keyWord) {
       this.keyword = this.$route.query.keyWord
     }

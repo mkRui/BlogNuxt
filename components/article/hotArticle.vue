@@ -6,8 +6,7 @@
           <img :src="item.cover">
         </div> -->
         <div class="font">
-          <h5>{{ item.articleTitle.length > 10 ? item.articleTitle.slice(0, 10) + '....' : item.articleTitle }}</h5>
-          <p>{{ item.articleMin }}</p>
+          <h5>[ {{ item.articleTag }} ] {{ item.articleTitle.length > 12 ? item.articleTitle.slice(0, 12) + '....' : item.articleTitle }}</h5>
         </div>
       </li>
       <li class="backFont" v-if="!article.length" :key="Math.random()">暂无文章</li>
@@ -46,7 +45,6 @@ export default {
     li {
       background: #fff;
       border-radius: 5px;
-      margin: 15px 0px;
       cursor: pointer;
       box-sizing: border-box;
       padding: 10px;
@@ -68,15 +66,8 @@ export default {
       .font {
         h5 {
           font-weight: normal;
-          font-size: 16px;
+          font-size: 14px;
           margin-bottom: 5px;
-        }
-        p {
-          line-height: 1.6;
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 2;
-          overflow: hidden;
         }
       }
     }
@@ -92,7 +83,6 @@ export default {
     li {
       background: #fff;
       border-radius: 5px;
-      margin: 15px 0px;
       cursor: pointer;
       box-sizing: border-box;
       padding: 10px;
@@ -108,15 +98,8 @@ export default {
         h5 {
           min-width: 175px;;
           font-weight: normal;
-          font-size: 15px;
+          font-size: 14px;
           margin-bottom: 5px;
-        }
-        p {
-          line-height: 1.6;
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 1;
-          overflow: hidden;
         }
       }
     }

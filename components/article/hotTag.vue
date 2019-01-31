@@ -38,6 +38,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 .tag-hot {
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
   h2 {
     font-size: 16px;
     letter-spacing: 3px;

@@ -33,7 +33,11 @@ For detailed explanation on how things work, checkout the [Nuxt.js docs](https:/
 
 6.移动端 改版 优化任务
 
-> 更新
+> 更新 （19年1月31日） 
+
+首页布局改版 修改预览bug
+
+> 更新 （18年12月30日）
 
 手机端 初步改版 完成
 

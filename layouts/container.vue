@@ -41,7 +41,8 @@ export default {
   data () {
     return {
       dialogView: false,
-      imgSrc: ''
+      imgSrc: '',
+      scrollY: ''
     }
   },
   computed: {
@@ -65,6 +66,7 @@ export default {
       }, 20)
     },
     view (e) {
+      this.scrollY = window.scrollY
       if (e.target.nodeName === 'IMG') {
         if (!e.target.getAttribute('data-src')) return
         this.dialogView = true
@@ -74,10 +76,15 @@ export default {
   },
   watch: {
     dialogView: {
-      handler: function () {
-        this.$store.dispatch('bodyState', this.dialogView)
-      },
-      immediate: true
+      handler: async function () {
+        await this.$store.dispatch('bodyState', this.dialogView)
+        if (!this.dialogView) {
+          console.log(this.scrollY)
+          window.scrollTo(0, this.scrollY)
+          this.scrollY = 0
+        }
+      }
+      // immediate: true
     }
   }
 }
