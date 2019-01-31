@@ -27,11 +27,9 @@ For detailed explanation on how things work, checkout the [Nuxt.js docs](https:/
 
 3.copy 说明
 
-4.移动端 改版 优化任务
+4.网站流量监控 Google
 
-5.网站流量监控 Google
-
-6.移动端 改版 优化任务
+5.移动端 改版 优化任务
 
 > 更新 （19年1月31日） 
 
