@@ -1,4 +1,16 @@
-# blogweb
+# BlogNuxt https://scrscript.com
+
+# 执行任务
+终于有了一定的时间，于是决心想用react对界面以及代码逻辑进行重构一遍并解决一些问题。
+关于后台管理 决定采用 nest 并开辟出一个分支 [BlogNext](https://github.com/CoderRui/BlogNuxt/tree/BlogNext)  
+master 则主要界面优化 代码升级
+
+# 执行计划(任务)
+>  BlogNext [BlogNext](https://github.com/CoderRui/BlogNuxt/tree/BlogNext)   
+1. 重构 BlogNuxt 采用 next 并更名为 BlogNext 😂
+2. 修改master问题，对界面重新设计，添加一些新的功能
+3. 代码结构优化
+4. 对master 的计划进行完善
 
 > Nuxt.js blog
 
