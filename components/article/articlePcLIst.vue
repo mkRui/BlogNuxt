@@ -149,9 +149,11 @@ export default {
             img {
               position: absolute;
               width: 100%;
+              top: 50%;
+              transform: translateY(-50%);
             }
             &:hover img {
-              transform: scale(1.2) rotate(5deg);
+              transform: translateY(-50%) scale(1.2) rotate(5deg);
             }
           }
         }
@@ -204,14 +206,14 @@ export default {
      position: relative;
      background: #fff;
      margin-bottom: 20px;
-     padding: 1.2rem;
+     padding: 2rem 1.2rem 1.2rem 1.2rem;
      border-radius: 5px;
       > .triangle {
         width: 140px;
         height: 24px;
         position: absolute;
-        top: -10px;
-        left: 20px;
+        top: 0px;
+        left: 0px;
         > div {
           width: 130px;
           height: 24px;

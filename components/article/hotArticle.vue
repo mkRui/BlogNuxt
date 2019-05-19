@@ -6,7 +6,7 @@
           <img :src="item.cover">
         </div> -->
         <div class="font">
-          <h5>[ {{ item.articleTag }} ] {{ item.articleTitle.length > 12 ? item.articleTitle.slice(0, 12) + '....' : item.articleTitle }}</h5>
+          <h5>[ {{ item.articleTag }} ] {{ item.articleTitle.length > 10 ? item.articleTitle.slice(0, 10) + '....' : item.articleTitle }}</h5>
         </div>
       </li>
       <li class="backFont" v-if="!article.length" :key="Math.random()">暂无文章</li>
@@ -47,7 +47,7 @@ export default {
       border-radius: 5px;
       cursor: pointer;
       box-sizing: border-box;
-      padding: 10px;
+      padding: 10px 20px 10px 20px;
       display: flex;
       &.backFont {
         justify-content: center;

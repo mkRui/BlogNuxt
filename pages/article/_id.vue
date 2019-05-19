@@ -4,7 +4,6 @@
       <div class="left">
         <div class="detail">
           <div class="triangle">
-            <div></div>
             <div>{{ article.createTime }}</div>
           </div>
             <h1>{{ article.title }}</h1>
@@ -188,6 +187,14 @@ export default {
     padding: 10px;
     >.left {
       width: 100%;
+      .detail {
+        padding-top: 36px;
+        h1 {
+          font-size: 20px;
+          line-height: 1.5;
+          font-weight: 500;
+        }
+      }
     }
   }
   .left {
@@ -203,10 +210,9 @@ export default {
         width: 140px;
         height: 24px;
         position: absolute;
-        top: -10px;
-        left: 20px;
-        div:nth-child(2) {
-          float: left;
+        top: 0px;
+        left: 0px;
+        > div {
           width: 130px;
           height: 24px;
           color: #fff;
@@ -215,14 +221,7 @@ export default {
           font-weight: bolder;
           font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
           background-color: $border;
-        }
-        div:nth-child(1) {
-          float: left;
-          width: 0px;
-          height: 0px;
-          border-top: solid 10px transparent;
-          border-right: solid 10px $border;
-          color: #ffffff;
+          border-radius: 9px 0px 9px 0px;
         }
       }
       h1 {

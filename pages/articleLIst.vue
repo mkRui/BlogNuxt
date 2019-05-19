@@ -122,7 +122,7 @@ export default {
       margin-top: 40px;
       > .write {
         header{
-          padding: 10px 10px 0px 10px;
+          padding: 20px 20px 0px 20px;
         }
         border-radius: 8px;
         margin-bottom: 10px;

@@ -82,6 +82,15 @@ export default {
     }
   }
 
+  ul {
+    margin-top: 20px;
+    margin-bottom: 16px;
+    li {
+      list-style: none;
+      line-height: 2;
+    }
+  }
+
   p {
     line-height: 2.5;
     a {
@@ -108,6 +117,39 @@ export default {
       }
       td {
         padding: 10px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1080px) {
+    ul {
+      margin-top: 20px;
+      margin-bottom: 16px;
+      li {
+        list-style: none;
+        line-height: 2;
+      }
+    }
+    ol {
+      margin-top: 20px;
+      margin-bottom: 16px;
+      li {
+        list-style: none;
+        line-height: 1.9;
+      }
+    }
+
+    p {
+      line-height: 1.9;
+      a {
+        color: #666;
+      }
+      code {
+        background: #f9f2f4;
+        color: #c7254e;
+        padding: 0px 5px;
+        margin: 0px 5px;
+        
       }
     }
   }

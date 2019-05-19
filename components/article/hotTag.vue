@@ -39,7 +39,7 @@ export default {
 <style lang="scss" scoped>
 .tag-hot {
   background: #fff;
-  padding: 10px;
+  padding: 20px;
   border-radius: 8px;
   h2 {
     font-size: 16px;
@@ -78,6 +78,7 @@ export default {
     }
   }
   &.show {
+    max-width: 330px;
     position: fixed;
     top: 0px;
     transform: translateY(80px);

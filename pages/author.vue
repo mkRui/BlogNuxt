@@ -2,7 +2,6 @@
   <div class="author" :class="mobile ? 'mobile' : ''">
     <!-- 页面标题 -->
     <div class="triangle">
-      <div></div>
       <div>{{ author.authorTitle }}</div>
     </div>
 
@@ -100,29 +99,24 @@ export default {
     margin-top: 2rem;
     padding: 10px;
   }
-  > .triangle {
-    height: 24px;
-    position: absolute;
-    top: -10px;
-    left: 20px;
-    display: flex;
-    div:nth-child(2) {
-      padding:0px 10px;
+    > .triangle {
+      width: 180px;
       height: 24px;
-      color: #fff;
-      line-height: 24px;
-      font-weight: bolder;
-      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      background-color: $border;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      > div {
+        width: 180px;
+        height: 24px;
+        color: #fff;
+        line-height: 24px;
+        text-align: center;
+        font-weight: bolder;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        background-color: $border;
+        border-radius: 9px 0px 9px 0px;
+      }
     }
-    div:nth-child(1) {
-      width: 0px;
-      height: 0px;
-      border-top: solid 10px transparent;
-      border-right: solid 10px $border;
-      color: #ffffff;
-    }
-  }
   > .titimg {
     width: 100%;
     height: 300px;

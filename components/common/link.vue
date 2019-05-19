@@ -17,7 +17,7 @@ export default {
   display: flex;
   justify-content: flex-start;
   background: #fff;
-  padding: 10px;
+  padding: 20px;
   border-radius: 8px;
   margin-top: 10px;
   div {

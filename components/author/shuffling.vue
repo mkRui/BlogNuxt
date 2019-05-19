@@ -25,7 +25,6 @@ export default {
 </script>
 <style lang='scss' scoped>
   .development {
-    margin-top: 20px;
     padding:10px 10px 10px 20px;
     border-left: 1px solid $border;
     border-top: 1px solid $border;

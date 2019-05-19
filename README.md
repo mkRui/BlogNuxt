@@ -57,3 +57,10 @@ For detailed explanation on how things work, checkout the [Nuxt.js docs](https:/
 >计划
 
 bilibili 视频分享 至 blog
+
+
+版本
+
+v 1.0.0 完成 Blog  
+
+v 1.0.1 修改部分样式 手机端样式微调
